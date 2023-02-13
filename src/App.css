@@ -1,0 +1,194 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: rgb(23, 25, 36);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.positiontopright{
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: rgb(76, 43, 223);
+}
+
+.top50{
+  margin-top: 90px;
+}
+
+.stadium{
+  color: white;
+  font-size: 15px;
+}
+
+.card{
+  margin: 5px;
+  width: 150px;
+  height: 130px;
+  color: rgb(81, 81, 236);
+  border:solid blue 1px;
+  font-size: 1rem;
+}
+
+.card:hover{
+  scale: 1.1;
+  transition: 0.2s;
+}
+
+.flexwrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.displayflex{
+  margin-top: 50px
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.leaguename{
+  color: rgb(59, 57, 57);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.teamname{
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.teambigname{
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.starttime{
+  color: rgb(236, 81, 81);
+  font-size: 14px;
+}
+
+.divider{
+  font-size: 40px !important;
+}
+
+.score{
+  color: red;
+  font-size: 14px;
+  
+}
+
+.scorebig{
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.teamlogo{
+  width: 25px;
+  height: 25px;
+}
+
+.fakelogo {
+  width: 25px;
+  height: 25px;
+  background-color: cornflowerblue;
+  float: left;
+}
+
+
+.title{
+  color: rgb(70, 70, 216);
+}
+
+.matche_card{
+  border-radius: 5px;
+  width: 400px;
+  margin:10px;
+  padding: 5px;
+  background-color: rgb(33, 37, 50);
+  padding: 9px 14px;
+}
+.matche_card:hover{
+  background-color: rgb(56, 61, 78);
+  cursor: pointer;
+}
+
+/* ul{
+  list-style-type: disc;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  columns: 2;
+  list-style-position: inside;
+} */
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 25px;
+  margin-top: 60px;
+}
+
+.goalNum {
+  border: 1px solid rgb(68, 71, 77);
+  border-radius: 9px;
+  height: 25px;
+  width: 27px;
+  background-color: rgb(47, 50, 56);
+}
+
+.btnDiv {
+  background-color: rgb(43, 46, 59);
+  cursor: pointer;
+  padding: 10px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin: 2px 11px;
+}
+
+.resultCard {
+  background-color: rgb(33,37,50);
+  border-radius: 16px;
+}
+
+.tabItem {
+  text-transform: lowercase!important;
+  color: white!important;
+}
