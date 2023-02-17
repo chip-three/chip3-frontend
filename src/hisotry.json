@@ -1,0 +1,300 @@
+[
+  [
+    {
+      "_id": "63da6017cb643f7c15af7f76",
+      "data": {
+        "fixture": {
+          "id": 965220,
+          "referee": null,
+          "timezone": "UTC",
+          "date": "2023-02-01T13:00:00+00:00",
+          "timestamp": 1675256400,
+          "periods": { "first": 1675256400, "second": 1675260000 },
+          "venue": {
+            "id": null,
+            "name": "Ittihad Nabarouh Stadium",
+            "city": "Nabaruh"
+          },
+          "status": { "long": "Match Finished", "short": "FT", "elapsed": 90 }
+        },
+        "league": {
+          "id": 889,
+          "name": "Second League - Group C",
+          "country": "Egypt",
+          "logo": "https://media-3.api-sports.io/football/leagues/889.png",
+          "flag": "https://media.api-sports.io/flags/eg.svg",
+          "season": 2022,
+          "round": "Group C - 16"
+        },
+        "teams": {
+          "home": {
+            "id": 16434,
+            "name": "Itehad Nabaroh",
+            "logo": "https://media.api-sports.io/football/teams/16434.png",
+            "winner": null
+          },
+          "away": {
+            "id": 18038,
+            "name": "El Magd",
+            "logo": "https://media.api-sports.io/football/teams/18038.png",
+            "winner": null
+          }
+        },
+        "goals": { "home": 0, "away": 0 },
+        "score": {
+          "halftime": { "home": 0, "away": 0 },
+          "fulltime": { "home": 0, "away": 0 },
+          "extratime": { "home": null, "away": null },
+          "penalty": { "home": null, "away": null }
+        }
+      },
+      "fixtureid": 965220,
+      "date": "2023-02-01",
+      "__v": 0
+    },
+    {
+      "_id": "63da781ab407465b51a6b99b",
+      "address": "0XCE9659D0D1821AF4B575D058DD670EFF851826CE",
+      "matchId": "965220",
+      "teamId": "16434",
+      "amount": "100000000000000000000",
+      "__v": 0
+    }
+  ],
+  [
+    {
+      "_id": "63da6017cb643f7c15af7f76",
+      "data": {
+        "fixture": {
+          "id": 965220,
+          "referee": null,
+          "timezone": "UTC",
+          "date": "2023-02-01T13:00:00+00:00",
+          "timestamp": 1675256400,
+          "periods": { "first": 1675256400, "second": 1675260000 },
+          "venue": {
+            "id": null,
+            "name": "Ittihad Nabarouh Stadium",
+            "city": "Nabaruh"
+          },
+          "status": { "long": "Match Finished", "short": "FT", "elapsed": 90 }
+        },
+        "league": {
+          "id": 889,
+          "name": "Second League - Group C",
+          "country": "Egypt",
+          "logo": "https://media-3.api-sports.io/football/leagues/889.png",
+          "flag": "https://media.api-sports.io/flags/eg.svg",
+          "season": 2022,
+          "round": "Group C - 16"
+        },
+        "teams": {
+          "home": {
+            "id": 16434,
+            "name": "Itehad Nabaroh",
+            "logo": "https://media.api-sports.io/football/teams/16434.png",
+            "winner": null
+          },
+          "away": {
+            "id": 18038,
+            "name": "El Magd",
+            "logo": "https://media.api-sports.io/football/teams/18038.png",
+            "winner": null
+          }
+        },
+        "goals": { "home": 0, "away": 0 },
+        "score": {
+          "halftime": { "home": 0, "away": 0 },
+          "fulltime": { "home": 0, "away": 0 },
+          "extratime": { "home": null, "away": null },
+          "penalty": { "home": null, "away": null }
+        }
+      },
+      "fixtureid": 965220,
+      "date": "2023-02-01",
+      "__v": 0
+    },
+    {
+      "_id": "63da78e2b407465b51a6c032",
+      "address": "0XCE9659D0D1821AF4B575D058DD670EFF851826CE",
+      "matchId": "965220",
+      "teamId": "18038",
+      "amount": "100000000000000000000",
+      "__v": 0
+    }
+  ],
+  [
+    {
+      "_id": "63da6017cb643f7c15af7f64",
+      "data": {
+        "fixture": {
+          "id": 994563,
+          "referee": null,
+          "timezone": "UTC",
+          "date": "2023-02-01T12:00:00+00:00",
+          "timestamp": 1675252800,
+          "periods": { "first": 1675252800, "second": 1675256400 },
+          "venue": { "id": null, "name": null, "city": null },
+          "status": { "long": "Match Finished", "short": "FT", "elapsed": 90 }
+        },
+        "league": {
+          "id": 667,
+          "name": "Friendlies Clubs",
+          "country": "World",
+          "logo": "https://media-3.api-sports.io/football/leagues/667.png",
+          "flag": null,
+          "season": 2023,
+          "round": "Club Friendlies 5"
+        },
+        "teams": {
+          "home": {
+            "id": 10162,
+            "name": "Budaörs",
+            "logo": "https://media-3.api-sports.io/football/teams/10162.png",
+            "winner": true
+          },
+          "away": {
+            "id": 5138,
+            "name": "Szekszárd",
+            "logo": "https://media.api-sports.io/football/teams/5138.png",
+            "winner": false
+          }
+        },
+        "goals": { "home": 6, "away": 0 },
+        "score": {
+          "halftime": { "home": 3, "away": 0 },
+          "fulltime": { "home": 6, "away": 0 },
+          "extratime": { "home": null, "away": null },
+          "penalty": { "home": null, "away": null }
+        }
+      },
+      "fixtureid": 994563,
+      "date": "2023-02-01",
+      "__v": 0
+    },
+    {
+      "_id": "63dac1fd61cc2fe827fe1cf2",
+      "address": "0XCE9659D0D1821AF4B575D058DD670EFF851826CE",
+      "matchId": "994563",
+      "teamId": "10162",
+      "amount": "1000",
+      "__v": 0
+    }
+  ],
+  [
+    {
+      "_id": "63da6017cb643f7c15af7f64",
+      "data": {
+        "fixture": {
+          "id": 994563,
+          "referee": null,
+          "timezone": "UTC",
+          "date": "2023-02-01T12:00:00+00:00",
+          "timestamp": 1675252800,
+          "periods": { "first": 1675252800, "second": 1675256400 },
+          "venue": { "id": null, "name": null, "city": null },
+          "status": { "long": "Match Finished", "short": "FT", "elapsed": 90 }
+        },
+        "league": {
+          "id": 667,
+          "name": "Friendlies Clubs",
+          "country": "World",
+          "logo": "https://media-3.api-sports.io/football/leagues/667.png",
+          "flag": null,
+          "season": 2023,
+          "round": "Club Friendlies 5"
+        },
+        "teams": {
+          "home": {
+            "id": 10162,
+            "name": "Budaörs",
+            "logo": "https://media-3.api-sports.io/football/teams/10162.png",
+            "winner": true
+          },
+          "away": {
+            "id": 5138,
+            "name": "Szekszárd",
+            "logo": "https://media.api-sports.io/football/teams/5138.png",
+            "winner": false
+          }
+        },
+        "goals": { "home": 6, "away": 0 },
+        "score": {
+          "halftime": { "home": 3, "away": 0 },
+          "fulltime": { "home": 6, "away": 0 },
+          "extratime": { "home": null, "away": null },
+          "penalty": { "home": null, "away": null }
+        }
+      },
+      "fixtureid": 994563,
+      "date": "2023-02-01",
+      "__v": 0
+    },
+    {
+      "_id": "63dac58e15d0d8813997cf1f",
+      "address": "0XCE9659D0D1821AF4B575D058DD670EFF851826CE",
+      "matchId": "994563",
+      "teamId": "5138",
+      "amount": "560",
+      "__v": 0
+    }
+  ],
+  [
+    {
+      "_id": "63da6017cb643f7c15af7f64",
+      "data": {
+        "fixture": {
+          "id": 994563,
+          "referee": null,
+          "timezone": "UTC",
+          "date": "2023-02-01T12:00:00+00:00",
+          "timestamp": 1675252800,
+          "periods": { "first": 1675252800, "second": 1675256400 },
+          "venue": { "id": null, "name": null, "city": null },
+          "status": { "long": "Match Finished", "short": "FT", "elapsed": 90 }
+        },
+        "league": {
+          "id": 667,
+          "name": "Friendlies Clubs",
+          "country": "World",
+          "logo": "https://media-3.api-sports.io/football/leagues/667.png",
+          "flag": null,
+          "season": 2023,
+          "round": "Club Friendlies 5"
+        },
+        "teams": {
+          "home": {
+            "id": 10162,
+            "name": "Budaörs",
+            "logo": "https://media-3.api-sports.io/football/teams/10162.png",
+            "winner": true
+          },
+          "away": {
+            "id": 5138,
+            "name": "Szekszárd",
+            "logo": "https://media.api-sports.io/football/teams/5138.png",
+            "winner": false
+          }
+        },
+        "goals": { "home": 6, "away": 0 },
+        "score": {
+          "halftime": { "home": 3, "away": 0 },
+          "fulltime": { "home": 6, "away": 0 },
+          "extratime": { "home": null, "away": null },
+          "penalty": { "home": null, "away": null }
+        }
+      },
+      "fixtureid": 994563,
+      "date": "2023-02-01",
+      "__v": 0
+    },
+    {
+      "_id": "63dac5c615d0d8813997d2c4",
+      "address": "0XCE9659D0D1821AF4B575D058DD670EFF851826CE",
+      "matchId": "994563",
+      "teamId": "5138",
+      "amount": "560000000000000000000",
+      "__v": 0
+    }
+  ]
+]

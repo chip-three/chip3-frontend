@@ -1,7 +1,14 @@
 .App {
   text-align: center;
+  display: flex;
+  background-color: rgb(23, 25, 36);
+  color: white;
+  overflow: hidden; /* Hide scrollbars */
+  height: 100vh;
 }
-
+.css-dip3t8{
+  background-color: rgb(23, 25, 36) !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,14 +21,33 @@
 }
 
 .App-header {
-  background-color: rgb(23, 25, 36);
-  min-height: 100vh;
-  display: flex;
+  overflow: auto !important;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.ps-menu-button:hover{
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.App-header::-webkit-scrollbar {
+  width: 2px;
+}
+ 
+.App-header::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+ 
+.App-header::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 .App-link {
@@ -79,6 +105,11 @@
 .column{
   display: flex;
   flex-direction: column;
+}
+
+.MuiPaper-root{
+  background-color: rgb(23, 25, 36) !important;
+  border-bottom: 1px solid rgb(59, 57, 57);
 }
 
 .leaguename{
@@ -140,7 +171,6 @@
 
 .matche_card{
   border-radius: 5px;
-  width: 400px;
   margin:10px;
   padding: 5px;
   background-color: rgb(33, 37, 50);
@@ -159,7 +189,7 @@
   list-style-position: inside;
 } */
 
-ul {
+.list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4px 25px;
@@ -172,6 +202,7 @@ ul {
   height: 25px;
   width: 27px;
   background-color: rgb(47, 50, 56);
+  text-align: center;
 }
 
 .btnDiv {
@@ -191,4 +222,10 @@ ul {
 .tabItem {
   text-transform: lowercase!important;
   color: white!important;
+}
+
+.topbar {
+  position: sticky;
+  top: 0px;
+  width: 100%;
 }

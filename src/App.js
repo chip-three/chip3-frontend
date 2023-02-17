@@ -1,7 +1,6 @@
 import './App.css';
 import factoryabi from './factory.json'
 import {useState, useEffect} from 'react'
-import Button from '@mui/material/Button';
 import axios from 'axios'
 import { Route, Routes} from 'react-router-dom';
 import Match from './match';
@@ -11,11 +10,21 @@ import mockdata from './get_data.json';
 import { RiWirelessChargingFill } from 'react-icons/ri';
 import { GiSoccerBall } from 'react-icons/gi';
 import { TbAntennaBars4 } from 'react-icons/tb';
+import AllBets from './allbets'
+import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+ 
+import "reactjs-navbar/dist/index.css";
 
 const abi = require('erc-20-abi')
 
 // export const serverURL = "https://chip3-server-production.up.railway.app"
-export const serverURL = "http://18.220.157.5:5000"
+export const serverURL = "http://127.0.0.1:5000"
 const chainid = 80001
 const hexchainid = "0x13881"
 
@@ -38,7 +47,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState([])
   const [current, setCurrent] = useState()
-  const [matches, setmatches]  =useState([])
+  const [matches, setmatches]  = useState([])
   const [name, setname] = useState()
   const [symbol, setsymbol] = useState()
   const [title, settitle] = useState()
@@ -49,6 +58,8 @@ function App() {
   const [matchdata, setmatchdata] = useState()
   const [history, sethistory] = useState([])
   const navigate = useNavigate();
+
+  const { collapseSidebar } = useProSidebar();
   
   useEffect(()=>{
     connect()
@@ -123,17 +134,38 @@ function App() {
   }
 
   return (
-    <div className="App">
-      
-      <header className="App-header">
-        <div className='positiontopright'>
+    <div>
+    <Box sx={{ flexGrow: 1}}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            LOGO
+          </Typography>
           {account ?<Button onClick={e=>gethistory()} variant="contained">{simpleaddress(account)}</Button>:<Button onClick={connect} variant="contained">Connect</Button>}
-        </div>
+
+        </Toolbar>
+      </AppBar>
+    </Box>
+    <div className="App">
+      <Sidebar style={{borderColor:"#383737"}} width = {200}>
+        <Menu>
+          <MenuItem> <GiSoccerBall/> Soccer</MenuItem>
+        </Menu>
+      </Sidebar>
+      <header className="App-header">
         <Routes>
           <Route exact path="/" element={
             <div>
             <h2 className='title'>Today matches</h2>
-            <ul>
+            <div className='list'>
               {
                 matches.map((item, key)=>
                 //   <div className='matche_card' key={key} onClick={e=>redirect(key)}>
@@ -214,14 +246,17 @@ function App() {
                   </div>
                 )
               }
-            </ul>
+            </div>
           </div>
           }/>
           <Route exact path="/:id" element={<Match/>}/>
           <Route exact path="/history" element ={<History/>}/>
+          <Route exact path="/allbets" element ={<AllBets/>}/>
+
         </Routes>
 
       </header>
+    </div>
     </div>
   );
 }
