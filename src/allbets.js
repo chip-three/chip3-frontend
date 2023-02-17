@@ -13,7 +13,7 @@ function AllBets() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        gethistory()
+        sethistory(mockdata)
     },[])
     
     const gethistory =async () =>{
@@ -41,12 +41,10 @@ function AllBets() {
 
     const redirect = (key) =>{
         console.log(history[key])
-
-        navigate("/" + history[key][0].data.fixture.id)
     }
 
     return(
-        <div className='w-75'>
+        <div className='w-100'>
              <div className="list">
                 {
                 history.length != 0 ? history.map((item, key)=>

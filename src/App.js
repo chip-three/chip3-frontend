@@ -149,8 +149,8 @@ function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             LOGO
           </Typography>
+          <Button onClick={e=>navigate("/allbets")}>All bettings</Button>
           {account ?<Button onClick={e=>gethistory()} variant="contained">{simpleaddress(account)}</Button>:<Button onClick={connect} variant="contained">Connect</Button>}
-
         </Toolbar>
       </AppBar>
     </Box>
