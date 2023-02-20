@@ -181,6 +181,54 @@
   cursor: pointer;
 }
 
+.chatitem{
+  border-radius: 2px;
+  margin: 5px;
+  font-size: medium !important;
+  text-align: left;
+  background-color: rgb(33, 37, 50);
+}
+.fakechatavatar{
+  background-color: blue;
+  height: 100%;
+  width: 14px;
+  height: 10px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.username{
+  color: white;
+}
+.chat{
+  position: sticky;
+  top:0;
+  background-color: rgb(33, 37, 50);
+  text-align: left;
+  font-size: 18px;
+}
+.message{
+  overflow-wrap: break-word;
+  color: rgb(151, 146, 146);
+}
+.rightbar{
+  border-left: solid 1px rgb(68, 71, 77);
+  position: fixed;
+  height: 100%;
+  width: 200px;
+  right: 0;
+  background-color: rgb(23, 25, 36) !important;
+  padding: 4px;
+}
+
+.rightpadding{
+  padding-right: 200px;
+}
+
+.ps-collapsed{
+  width:58px;
+  max-width: 58px;
+}
+
 /* ul{
   list-style-type: disc;
   -webkit-columns: 2;
@@ -193,7 +241,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4px 25px;
-  margin-top: 60px;
 }
 
 .goalNum {

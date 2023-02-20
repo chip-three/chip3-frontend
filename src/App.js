@@ -18,8 +18,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
- 
+import { CiFootball , CiBasketball} from "react-icons/ci";
+import { BsFillChatLeftFill } from "react-icons/bs";
+
 import "reactjs-navbar/dist/index.css";
+import chathistory from './fakechathistory.json'
 
 const abi = require('erc-20-abi')
 
@@ -155,59 +158,37 @@ function App() {
       </AppBar>
     </Box>
     <div className="App">
-      <Sidebar style={{borderColor:"#383737"}} width = {200}>
+      <Sidebar style={{borderColor:"#383737"}} defaultCollapsed={true} collapsedWidth='58px'>
         <Menu>
           <MenuItem> <GiSoccerBall/> Soccer</MenuItem>
+          <MenuItem> <CiFootball/> </MenuItem>
+          <MenuItem> <CiBasketball/> </MenuItem>
         </Menu>
       </Sidebar>
       <header className="App-header">
+        <div className='rightbar'>
+          <div className='chat'>
+          &nbsp; <BsFillChatLeftFill/>  Chat
+          </div>
+           {
+           chathistory.map((item)=>
+           <div className='chatitem'>
+            <img className='fakechatavatar'></img>&nbsp;
+            <span className='username'>{item.username}</span>
+              :&nbsp;
+            <span className='message'>{item.message}</span>  
+           </div>)
+           }
+        </div>
         <Routes>
           <Route exact path="/" element={
-            <div>
-            <h2 className='title'>Today matches</h2>
+            <div className='rightpadding'>
+            {/* <h2 className='title'>Today matches</h2> */}
             <div className='list'>
+              {/* <button onClick={collapseSidebar}>adaf</button> */}
               {
                 matches.map((item, key)=>
-                //   <div className='matche_card' key={key} onClick={e=>redirect(key)}>
-                //     <div className='mx-0 d-flex justify-content-between row leaguename'>
-                //       <div className='col-5 col-md-5'>
-                //         {item.league.name}-{item.league.country}
-                //       </div>
-                //       <div className='col-5 col-md-5' style={{color:status2style(item.fixture.status.long)}}>
-                //         {item.fixture.status.long}
-                //       </div>
-                //     </div>
-                //     <div className='mx-0 d-flex justify-content-center row starttime'>
-                //       {timestamp2time(item.fixture.timestamp)}
-                //     </div>
-                //     <div className='mx-0 d-flex justify-content-center row teamname'>
-                //       <div className='col-5 col-md-5'>
-                //         {/* <img src={item.teams.home.logo} className="teamlogo"></img> */}
-                //         <div className='fakelogo'></div>
-                //         <p>{item.teams.home.name}</p>
-                //       </div>
-                //       <div className='d-flex flex-column justify-content-center'>:</div>
-                //       <div className='col-5 col-md-5'>
-                //         {/* <img src={item.teams.away.logo} className="teamlogo"></img> */}
-                //         <div className='fakelogo'></div>
-                //         <p>{item.teams.away.name}</p>
-                //       </div>
-                //     </div>
-                //     {
-                //       item.fixture.status.long == "Match Finished"?
-                //       <div className='mx-0 d-flex justify-content-center row score'>
-                //         <div className='col-5 col-md-5'>
-                //           {item.goals.home}
-                //         </div>
-                //         <div className='d-flex flex-column justify-content-center'>:</div>
-                //         <div className='col-5 col-md-5'>
-                //         {item.goals.away}
-                //         </div>
-                //       </div>  :<></>
-                //     }
-                    
-                //   </div>
-                  <div className="d-flex flex-column matche_card" key={key} onClick={e=>redirect(key)}>
+                  <div className="d-flex flex-column matche_card" key={key} onClick={e => redirect(key)}>
                     <div className="d-flex flex-row justify-content-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
                       <div style={{ color: "rgb(115, 120, 131)" }}><GiSoccerBall /> {item.league.name}-{item.league.country}</div>
                       <span style={{color: "rgb(115, 120, 131)"}}><TbAntennaBars4 /></span>
@@ -218,14 +199,14 @@ function App() {
                     </div>
                     <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
                       <div style={{ width: "180px" }}>
-                        <img src={item.teams.home.logo} className="teamlogo"></img>
+                        {/* <img src={item.teams.home.logo} className="teamlogo"></img> */}
                         <p style={{ display: "line", float: "left", marginLeft: "10px"}}>{item.teams.home.name}</p>
                       </div>
                       <div className="goalNum">{item.goals.home}</div>
                     </div>
                     <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
                       <div style={{ width: "180px" }}>
-                        <img src={item.teams.away.logo} className="teamlogo"></img>
+                        {/* <img src={item.teams.away.logo} className="teamlogo"></img> */}
                         <p style={{ display: "line", float: "left", marginLeft: "10px"}}>{item.teams.away.name}</p>
                       </div>
                       <div className="goalNum">{item.goals.away}</div>
@@ -254,7 +235,6 @@ function App() {
           <Route exact path="/allbets" element ={<AllBets/>}/>
 
         </Routes>
-
       </header>
     </div>
     </div>
