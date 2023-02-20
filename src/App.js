@@ -20,6 +20,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { CiFootball , CiBasketball} from "react-icons/ci";
 import { BsFillChatLeftFill } from "react-icons/bs";
+import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
+import { AiOutlineHome, AiOutlineStar } from "react-icons/ai"
 
 import "reactjs-navbar/dist/index.css";
 import chathistory from './fakechathistory.json'
@@ -137,7 +139,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='main'>
     <Box sx={{ flexGrow: 1}}>
       <AppBar position="static">
         <Toolbar>
@@ -158,8 +160,9 @@ function App() {
       </AppBar>
     </Box>
     <div className="App">
-      <Sidebar style={{borderColor:"#383737"}} defaultCollapsed={true} collapsedWidth='58px'>
+      <Sidebar style={{borderColor:"#383737", fontSize:"20px"}} defaultCollapsed={true} collapsedWidth='61px'>
         <Menu>
+        <MenuItem> <TbLayoutSidebarLeftCollapse/> </MenuItem>
           <MenuItem> <GiSoccerBall/> Soccer</MenuItem>
           <MenuItem> <CiFootball/> </MenuItem>
           <MenuItem> <CiBasketball/> </MenuItem>
@@ -168,21 +171,29 @@ function App() {
       <header className="App-header">
         <div className='rightbar'>
           <div className='chat'>
-          &nbsp; <BsFillChatLeftFill/>  Chat
+          &nbsp; <BsFillChatLeftFill/> Chat
           </div>
            {
-           chathistory.map((item)=>
-           <div className='chatitem'>
-            <img className='fakechatavatar'></img>&nbsp;
-            <span className='username'>{item.username}</span>
-              :&nbsp;
-            <span className='message'>{item.message}</span>  
-           </div>)
+            chathistory.map((item)=>
+            <div className='chatitem'>
+              <img className='fakechatavatar'></img>&nbsp;
+              <span className='username'>{item.username}</span>
+                :&nbsp;
+              <span className='message'>{item.message}</span>  
+            </div>)
            }
         </div>
         <Routes>
           <Route exact path="/" element={
             <div className='rightpadding'>
+              <div className='menubar'>
+                <span className='menuicon'><AiOutlineHome/></span>
+                <span className='menuicon'><AiOutlineStar/></span>
+                <span className='menuicon'><GiSoccerBall/></span>
+                <span className='menuicon'><CiBasketball/></span>
+                <span className='menuicon'><CiFootball/></span>
+                  
+              </div>
             {/* <h2 className='title'>Today matches</h2> */}
             <div className='list'>
               {/* <button onClick={collapseSidebar}>adaf</button> */}

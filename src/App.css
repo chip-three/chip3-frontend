@@ -196,8 +196,15 @@
   padding-left: 2px;
   padding-right: 2px;
 }
+.main{
+  overflow: hidden;
+}
 .username{
   color: white;
+}
+.menuicon{
+  padding-left: 10px;
+
 }
 .chat{
   position: sticky;
@@ -218,6 +225,15 @@
   right: 0;
   background-color: rgb(23, 25, 36) !important;
   padding: 4px;
+}
+
+.menubar{
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: rgb(23, 25, 36);
+  text-align: left;
+  padding-left: 30px;
 }
 
 .rightpadding{
