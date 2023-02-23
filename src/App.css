@@ -6,6 +6,11 @@
   overflow: hidden; /* Hide scrollbars */
   height: 100vh;
 }
+
+.mainpad{
+  height: 100vh;
+}
+
 .css-dip3t8{
   background-color: rgb(23, 25, 36) !important;
 }
@@ -82,10 +87,11 @@
 .card{
   margin: 5px;
   width: 150px;
-  height: 130px;
-  color: rgb(81, 81, 236);
-  border:solid blue 1px;
+  height: 80px;
+  color: white;
   font-size: 1rem;
+  background-color:rgb(23, 25, 36);
+  border-radius: 5px;
 }
 
 .card:hover{
@@ -168,6 +174,9 @@
 .title{
   color: rgb(70, 70, 216);
 }
+.card-title{
+  margin: 0;
+}
 
 .matche_card{
   border-radius: 5px;
@@ -196,7 +205,17 @@
   padding-left: 2px;
   padding-right: 2px;
 }
+.MuiFormLabel-root{
+  color: white !important;
+}
+.MuiInputBase-root{
+  color: white !important;
+} 
+.MuiInputBase-root::before{
+  border-bottom: solid 1px white !important;
+}
 .main{
+  height: 100vh;
   overflow: hidden;
 }
 .username{

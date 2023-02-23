@@ -52,7 +52,7 @@ function History() {
       }
 
     return(
-    <div className='w-100'>
+    <div className='rightpadding'>
     <h2 className='title'>Your betting</h2>
     <div className="list">
     {

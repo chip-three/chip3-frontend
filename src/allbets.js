@@ -44,7 +44,7 @@ function AllBets() {
     }
 
     return(
-        <div className='w-100'>
+        <div className='rightpadding'>
              <div className="list">
                 {
                 history.length != 0 ? history.map((item, key)=>

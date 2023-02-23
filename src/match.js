@@ -140,7 +140,7 @@ function Match() {
     
     const create = async ()=>{
       await connect()
-      if(description && amount && value){
+      if(description && amount){
           let provider = new ethers.providers.Web3Provider(ethereum);
           const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
           let signer = provider.getSigner();
@@ -252,7 +252,7 @@ function Match() {
     }
 
     return(
-        <div className="w-100">
+        <div className="rightpadding">
             {data?
                 <div className="resultCard mx-3">
                     <h1 className="title">
@@ -293,13 +293,6 @@ function Match() {
                         </div>
                       </div>  :<></>
                     }
-                    {
-                        data.fixture.status.long == "Not Started"?
-                        <div>   
-                            <Button onClick={e=>{setOpen(true)}} variant="contained">Create Bet</Button>
-                        </div>
-                        :<></>
-                    }
                     <div className="py-1 px-3">
                         {
                         schedules.length != 0 ? 
@@ -319,12 +312,12 @@ function Match() {
             :
             <div></div>}
 
-            <Dialog maxWidth='sm' fullWidth={true} open={open} onClose={handleClose}>
-              <DialogTitle>Create New Betting</DialogTitle>
+            <Dialog maxWidth='sm'  fullWidth={true} open={open} onClose={handleClose}>
+              <DialogTitle style={{color:"white"}}>Create New Betting</DialogTitle>
               <DialogContent>
                 <DialogContentText>
                   <div className='column'>
-                    <FormControl>
+                    {/* <FormControl>
                       <FormLabel id="demo-controlled-radio-buttons-group">Select Team</FormLabel>
                       <RadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
@@ -335,9 +328,9 @@ function Match() {
                         <FormControlLabel value={data?data.teams.home.id:""}  control={<Radio />} label={data?data.teams.home.name:""} />
                         <FormControlLabel value={data?data.teams.away.id:""}  control={<Radio />} label={data?data.teams.away.name:""} />
                       </RadioGroup>
-                    </FormControl>
-                    <TextField value={description} onChange={e=>setdescription(e.target.value)} autoFocus margin="dense" id="name" label="Bet description" variant="standard"/>
-                    <TextField value={amount} onChange={e=>setamount(e.target.value)} autoFocus margin="dense" id="name" label="Bet amount" variant="standard"/>
+                    </FormControl> */}
+                    <TextField InputLabelProps={{ shrink: true }} style={{color:"white"}} value={description} onChange={e=>setdescription(e.target.value)} autoFocus margin="dense" id="name" label="Bet description" variant="standard"/>
+                    <TextField InputLabelProps={{ shrink: true }} style={{color:"white"}} value={amount} onChange={e=>setamount(e.target.value)} autoFocus margin="dense" id="name" label="Bet amount" variant="standard"/>
                   </div>
                 </DialogContentText>
               </DialogContent>
@@ -348,7 +341,7 @@ function Match() {
             </Dialog>
 
             <Dialog open={openbet} onClose={handleClosebet}>
-                <DialogTitle>Bet : {index[1]}</DialogTitle>
+                <DialogTitle style={{color:"white"}}>Bet : {index[1]}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                     <Button variant="contained" onClick={betwin}>Bet on Win</Button>
@@ -377,8 +370,8 @@ function Match() {
                     <div>
                       <p style={{ textAlign: "start" }}>1x2</p>
                       <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                        <div className="btnDiv flex-fill">
-                          <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{data?data.teams.home.name:""}</span>
+                        <div className="btnDiv flex-fill" onClick={ e=>{setOpen(true); setValue(data.teams.home.id)} }>
+                          <span style={{color: "rgb(115, 120, 131)", float: "left"}} >{data? data.teams.home.name: ""}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
                         <div className="btnDiv flex-fill">
