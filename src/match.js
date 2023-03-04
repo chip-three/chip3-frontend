@@ -72,29 +72,29 @@ function Match() {
           url: `${serverURL}/get_data`
         };
     
-        // axios(config)
-        // .then(function (response) {
-        //   for(let item of response.data ){
-        //     if(item.fixture.id == id){
-        //       setdata(item)
-        //       console.log(item)
-        //     }
-        //   }
-        // })
-
-        for(let item of mockdata ){
-          if(item.fixture.id == id){
-            setdata(item)
-            console.log(item)
+        axios(config)
+        .then(function (response) {
+          for(let item of response.data ){
+            if(item.fixture.id == id){
+              setdata(item)
+              console.log(item)
+            }
           }
-        }
+        })
+
+        // for(let item of mockdata ){
+        //   if(item.fixture.id == id){
+        //     setdata(item)
+        //     console.log(item)
+        //   }
+        // }
 
       let provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
       let vestingcontract = new ethers.Contract(factory, factoryabi, provider);
       vestingcontract.getMyContract(id)
       .then(result=>{
           setschedules(result)
-          console.log(result)
+          console.log(result, id)
       })
     },[])
 
@@ -108,7 +108,7 @@ function Match() {
       vestingcontract.getMyContract(id)
       .then(result=>{
           setschedules(result)
-          console.log(result)
+          console.log(result, id)
       })
     }
 
@@ -379,7 +379,7 @@ function Match() {
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
                         <div className="btnDiv flex-fill">
-                          <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{data?data.teams.away.name:""}</span>
+                          <span style={{color: "rgb(115, 120, 131)", float: "left"}}  onClick={e=>{setOpen(true); setValue(data.teams.away.id)} }>{data?data.teams.away.name:""}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
                       </div>

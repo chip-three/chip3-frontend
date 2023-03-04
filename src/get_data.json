@@ -220,7 +220,7 @@
                 "city": "Kingston"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -288,7 +288,7 @@
                 "city": "San Nicolás de los Garza"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -356,7 +356,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -424,7 +424,7 @@
                 "city": "Manizales"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -492,7 +492,7 @@
                 "city": "Mazatlán"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -560,7 +560,7 @@
                 "city": "Zapopan"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -696,7 +696,7 @@
                 "city": "Imphal"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -764,7 +764,7 @@
                 "city": "Imphal"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -832,7 +832,7 @@
                 "city": "Martapura"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -900,7 +900,7 @@
                 "city": "Comilla"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -968,7 +968,7 @@
                 "city": "Gopalganj"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1036,7 +1036,7 @@
                 "city": "Semarang"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1104,7 +1104,7 @@
                 "city": "Khorramabad"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1172,7 +1172,7 @@
                 "city": "Babol"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1240,7 +1240,7 @@
                 "city": "Shiraz"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1308,7 +1308,7 @@
                 "city": "Hamedān"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1444,7 +1444,7 @@
                 "city": "Jam"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1512,7 +1512,7 @@
                 "city": "Ahwaz"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1580,7 +1580,7 @@
                 "city": "Abadan"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1716,7 +1716,7 @@
                 "city": "Funtana"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1784,7 +1784,7 @@
                 "city": "Portimão"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1852,7 +1852,7 @@
                 "city": "Bagdad"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1920,7 +1920,7 @@
                 "city": "Al Samawah"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -1988,7 +1988,7 @@
                 "city": "Baku"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2124,7 +2124,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2192,7 +2192,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2260,7 +2260,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2328,7 +2328,7 @@
                 "city": "Lillestrøm"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2396,7 +2396,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2464,7 +2464,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2532,7 +2532,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2600,7 +2600,7 @@
                 "city": "Riyadh"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2668,7 +2668,7 @@
                 "city": "Failand, Somerset"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2804,7 +2804,7 @@
                 "city": "Madeira"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2872,7 +2872,7 @@
                 "city": "Medina"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -2940,7 +2940,7 @@
                 "city": "Montevarchi"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3008,7 +3008,7 @@
                 "city": "Imola"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3076,7 +3076,7 @@
                 "city": "Antalya"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3144,7 +3144,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3212,7 +3212,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3280,7 +3280,7 @@
                 "city": "Alanya"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3348,7 +3348,7 @@
                 "city": "Barnsley, South Yorkshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3416,7 +3416,7 @@
                 "city": "York, North Yorkshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3484,7 +3484,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3552,7 +3552,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3620,7 +3620,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3688,7 +3688,7 @@
                 "city": "Baku"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3824,7 +3824,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3892,7 +3892,7 @@
                 "city": "Braga"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -3960,7 +3960,7 @@
                 "city": "Matosinhos"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4028,7 +4028,7 @@
                 "city": "Mafra"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4096,7 +4096,7 @@
                 "city": "Silkeborg"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4164,7 +4164,7 @@
                 "city": "Bir El Djir"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4232,7 +4232,7 @@
                 "city": "Bagdad"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4300,7 +4300,7 @@
                 "city": "İstanbul"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4368,7 +4368,7 @@
                 "city": "Paderborn"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4436,7 +4436,7 @@
                 "city": "Petach-Tikva"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4504,7 +4504,7 @@
                 "city": "Wien"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4572,7 +4572,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4708,7 +4708,7 @@
                 "city": "Cancún"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4844,7 +4844,7 @@
                 "city": "Gubbio"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -4912,7 +4912,7 @@
                 "city": "Alessandria"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5116,7 +5116,7 @@
                 "city": "Viseu"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5184,7 +5184,7 @@
                 "city": "Leipzig"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5320,7 +5320,7 @@
                 "city": "Thun"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "PEN",
                 "elapsed": 120
             }
@@ -5388,7 +5388,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5456,7 +5456,7 @@
                 "city": "Kassel"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5524,7 +5524,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5592,7 +5592,7 @@
                 "city": "Netanya"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5660,7 +5660,7 @@
                 "city": "TBC"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5796,7 +5796,7 @@
                 "city": "Paços de Ferreira"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -5932,7 +5932,7 @@
                 "city": "Borehamwood, Hertfordshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6000,7 +6000,7 @@
                 "city": "London"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6068,7 +6068,7 @@
                 "city": "Nova Venécia, Espírito Santo"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6136,7 +6136,7 @@
                 "city": "Unterhaching"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6204,7 +6204,7 @@
                 "city": null
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6272,7 +6272,7 @@
                 "city": "Baraki"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6340,7 +6340,7 @@
                 "city": "Hartley Wintney, Hampshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6408,7 +6408,7 @@
                 "city": "Youghal"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6476,7 +6476,7 @@
                 "city": "Leiston, Suffolk"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6544,7 +6544,7 @@
                 "city": "Dingwall"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6612,7 +6612,7 @@
                 "city": "Longeville-lès-Metz"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6680,7 +6680,7 @@
                 "city": "Annecy"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6748,7 +6748,7 @@
                 "city": "Laval"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6816,7 +6816,7 @@
                 "city": "Montbéliard"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6884,7 +6884,7 @@
                 "city": "Paris"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -6952,7 +6952,7 @@
                 "city": "Grenoble"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7020,7 +7020,7 @@
                 "city": "Niort"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7088,7 +7088,7 @@
                 "city": "Furiani"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7156,7 +7156,7 @@
                 "city": "Guingamp"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7224,7 +7224,7 @@
                 "city": "Carlisle, Cumbria"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7292,7 +7292,7 @@
                 "city": "Salford, Greater Manchester"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7360,7 +7360,7 @@
                 "city": "Crewe, Cheshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7428,7 +7428,7 @@
                 "city": "Castlederg"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7496,7 +7496,7 @@
                 "city": "Warrenpoint"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7564,7 +7564,7 @@
                 "city": "Loughgall"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7632,7 +7632,7 @@
                 "city": "Luton, Bedfordshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7700,7 +7700,7 @@
                 "city": "Hwlffordd / Haverfordwest, Pembrokeshie"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7768,7 +7768,7 @@
                 "city": "Oswestry / Croesoswallt, Shropshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7904,7 +7904,7 @@
                 "city": "Aldershot, Hampshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -7972,7 +7972,7 @@
                 "city": "Eastleigh, Hampshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8040,7 +8040,7 @@
                 "city": "Solihull, West Midlands"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8108,7 +8108,7 @@
                 "city": "Woking, Surrey"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8176,7 +8176,7 @@
                 "city": "Yeovil, Somerset"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8244,7 +8244,7 @@
                 "city": "Hungerford, Berkshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8312,7 +8312,7 @@
                 "city": "Weymouth, Dorset"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8380,7 +8380,7 @@
                 "city": "Taunton, Somerset"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8448,7 +8448,7 @@
                 "city": "Dover, Kent"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8516,7 +8516,7 @@
                 "city": "Farnborough, Hampshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8584,7 +8584,7 @@
                 "city": "Braintree, Essex"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8652,7 +8652,7 @@
                 "city": "Chester, Cheshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8720,7 +8720,7 @@
                 "city": "Chorley, Lancashire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8788,7 +8788,7 @@
                 "city": "Kidderminster, Worcestershire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8856,7 +8856,7 @@
                 "city": "King's Lynn, Norfolk"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8924,7 +8924,7 @@
                 "city": "Scarborough, North Yorkshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -8992,7 +8992,7 @@
                 "city": "Spennymoor, County Durham"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9060,7 +9060,7 @@
                 "city": "Darlington, Durham"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9128,7 +9128,7 @@
                 "city": "Kettering, Northamptonshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9196,7 +9196,7 @@
                 "city": "Herne Bay, Kent"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9264,7 +9264,7 @@
                 "city": "Basildon, Essex"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9332,7 +9332,7 @@
                 "city": "Brightlingsea, Essex"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9400,7 +9400,7 @@
                 "city": "London"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9468,7 +9468,7 @@
                 "city": "Lewes, East Sussex"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9536,7 +9536,7 @@
                 "city": "Belper, Derbyshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9604,7 +9604,7 @@
                 "city": "Cleckheaton, West Yorkshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9672,7 +9672,7 @@
                 "city": "Stalybridge, Greater Manchester"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9740,7 +9740,7 @@
                 "city": "South Shields, Tyne and Wear"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9876,7 +9876,7 @@
                 "city": "Plymouth, Devon"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -9944,7 +9944,7 @@
                 "city": "Salisbury, Wiltshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -10012,7 +10012,7 @@
                 "city": "Needham Market, Suffolk"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -10080,7 +10080,7 @@
                 "city": "Tamworth, Staffordshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -10216,7 +10216,7 @@
                 "city": "Royston, Hertfordshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -11916,7 +11916,7 @@
                 "city": "Bordeaux"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -11984,7 +11984,7 @@
                 "city": "Berlin"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12052,7 +12052,7 @@
                 "city": "Aberdeen"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12120,7 +12120,7 @@
                 "city": "Inverness"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12188,7 +12188,7 @@
                 "city": "South Harrow, Middlesex"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "PEN",
                 "elapsed": 120
             }
@@ -12256,7 +12256,7 @@
                 "city": "Banbury, Oxfordshire"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12324,7 +12324,7 @@
                 "city": "Birmingham"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "AET",
                 "elapsed": 120
             }
@@ -12392,7 +12392,7 @@
                 "city": "Recanati"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12460,7 +12460,7 @@
                 "city": "Olbia"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12528,7 +12528,7 @@
                 "city": "Reggio nell'Emilia"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12596,7 +12596,7 @@
                 "city": "Siena"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12664,7 +12664,7 @@
                 "city": "Lucca"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12732,7 +12732,7 @@
                 "city": "Pesaro"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12800,7 +12800,7 @@
                 "city": "Newcastle upon Tyne"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12868,7 +12868,7 @@
                 "city": "Milano"
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }
@@ -12936,7 +12936,7 @@
                 "city": "Bogotá, D.C."
             },
             "status": {
-                "long": "Match Finished",
+                "long": "Not Started",
                 "short": "FT",
                 "elapsed": 90
             }

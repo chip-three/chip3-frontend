@@ -23,15 +23,15 @@ function History() {
     }
 
     const gethistory =async () =>{
-      //   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      // if(accounts){
-      //   let res = await axios.post(`${serverURL}/history`,{
-      //     address: accounts[0]
-      //   })
-      //   console.log(res.data)
-      //   sethistory(res.data)
-      // }
-      sethistory(mockdata)
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      if(accounts){
+        let res = await axios.post(`${serverURL}/history`,{
+          address: accounts[0]
+        })
+        console.log(res.data)
+        sethistory(res.data)
+      }
+      // sethistory(mockdata)
     }
 
     const timestamp2time = (timestamp)=>{
@@ -53,7 +53,7 @@ function History() {
 
     return(
     <div className='rightpadding'>
-    <h2 className='title'>Your betting</h2>
+    {/* <h2 className='title'>Your betting</h2> */}
     <div className="list">
     {
       history.length != 0 ? history.map((item, key)=>

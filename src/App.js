@@ -28,8 +28,8 @@ import chathistory from './fakechathistory.json'
 
 const abi = require('erc-20-abi')
 
-// export const serverURL = "https://chip3-server-production.up.railway.app"
-export const serverURL = "http://127.0.0.1:5000"
+export const serverURL = "https://chip3-server-production.up.railway.app"
+// export const serverURL = "http://127.0.0.1:5000"
 const chainid = 80001
 const hexchainid = "0x13881"
 
@@ -47,25 +47,12 @@ function generateRandomDecimalInRangeFormatted(min, max, places) {
 const {ethereum} = window
 
 function App() {
-  const [schedules, setschedules] = useState([])
   const [account, setAccount] = useState()
-  const [open, setOpen] = useState(false);
-  const [index, setIndex] = useState([])
-  const [current, setCurrent] = useState()
   const [matches, setmatches]  = useState([])
-  const [name, setname] = useState()
-  const [symbol, setsymbol] = useState()
-  const [title, settitle] = useState()
-  const [description, setdescription] = useState()
-  const [amount, setamount] = useState()
-  const [firsturi, setfirsturi] = useState()
-  const [seconduri, setseconduri] = useState()
-  const [matchdata, setmatchdata] = useState()
-  const [history, sethistory] = useState([])
   const navigate = useNavigate();
 
   const { collapseSidebar } = useProSidebar();
-  
+
   useEffect(()=>{
     connect()
     let config = {
@@ -73,19 +60,19 @@ function App() {
       url: `${serverURL}/get_data`
     };
     console.log('---a')
-    // axios(config)
-    // .then(function (response) {
-    //   let showdata = []
-    //   for(const item of response.data){
-    //     if(item.fixture.status.long == "Not Started"){
-    //       showdata.push(item)
-    //     }
-    //   }
-    //   showdata.sort((a,b)=>{
-    //     return a.fixture.timestamp - b.fixture.timestamp
-    //   })
-    //   setmatches(showdata)
-    // })
+    axios(config)
+    .then(function (response) {
+      let showdata = []
+      for(const item of response.data){
+        if(item.fixture.status.long == "Not Started"){
+          showdata.push(item)
+        }
+      }
+      showdata.sort((b,a)=>{
+        return a.fixture.timestamp - b.fixture.timestamp
+      })
+      setmatches(showdata)
+    })
     
       let showdata = []
       // for(const item of mockdata){
@@ -96,8 +83,8 @@ function App() {
       // showdata.sort((a,b)=>{
       //   return a.fixture.timestamp - b.fixture.timestamp
       // })
-      showdata.push(...mockdata)
-      setmatches(showdata)
+      // showdata.push(...mockdata)
+      // setmatches(showdata)
   },[])
 
   const connect = async () =>{
