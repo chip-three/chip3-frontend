@@ -6,27 +6,56 @@ import { Route, Routes} from 'react-router-dom';
 import Match from './match';
 import { useNavigate } from "react-router-dom";
 import History from './history';
-import mockdata from './get_data.json';
 import { RiWirelessChargingFill } from 'react-icons/ri';
 import { GiSoccerBall } from 'react-icons/gi';
 import { TbAntennaBars4 } from 'react-icons/tb';
 import AllBets from './allbets'
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { CiFootball , CiBasketball} from "react-icons/ci";
 import { BsFillChatLeftFill } from "react-icons/bs";
 import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
-import { AiOutlineHome, AiOutlineStar } from "react-icons/ai"
+import { AiOutlineHome , AiOutlineWechat} from "react-icons/ai"
+import cn from "classnames"
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  darkTheme
+} from '@rainbow-me/rainbowkit';
+import { ethers } from 'ethers';
+import {
+  configureChains,
+  createClient,
+  WagmiConfig,
+  useAccount } from 'wagmi';
+import { polygon, polygonMumbai} from 'wagmi/chains';
+import { publicProvider } from 'wagmi/providers/public';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import "reactjs-navbar/dist/index.css";
 import chathistory from './fakechathistory.json'
 
+const token = "0x6b15be00DBb3c2ffB808f40C1782F8EA83132afe"
 const abi = require('erc-20-abi')
+
+const { chains, provider } = configureChains(
+  [ polygon, polygonMumbai],
+  [
+    publicProvider()
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  chains
+});
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider
+})
 
 export const serverURL = "https://chip3-server-production.up.railway.app"
 // export const serverURL = "http://127.0.0.1:5000"
@@ -47,14 +76,25 @@ function generateRandomDecimalInRangeFormatted(min, max, places) {
 const {ethereum} = window
 
 function App() {
-  const [account, setAccount] = useState()
   const [matches, setmatches]  = useState([])
   const navigate = useNavigate();
+  const [balance, setBalance] = useState(0)
+  const [showrightbar, setshowrightbar] = useState(true)
 
-  const { collapseSidebar } = useProSidebar();
+  const { isConnected , address} = useAccount()
 
   useEffect(()=>{
-    connect()
+    if(isConnected) {
+      let provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
+      let tokenContract = new ethers.Contract(token, abi, provider);
+      tokenContract.balanceOf(address).then(res=>{
+        console.log(typeof(ethers.utils.formatEther(res.toString())))
+        setBalance(ethers.utils.formatEther(res.toString()).split('.')[0])
+      })
+    }
+  },[isConnected])
+
+  useEffect(()=>{
     let config = {
       method: 'get',
       url: `${serverURL}/get_data`
@@ -73,18 +113,6 @@ function App() {
       })
       setmatches(showdata)
     })
-    
-      let showdata = []
-      // for(const item of mockdata){
-      //   if(item.fixture.status.long == "Not Started"){
-      //     showdata.push(item)
-      //   }
-      // }
-      // showdata.sort((a,b)=>{
-      //   return a.fixture.timestamp - b.fixture.timestamp
-      // })
-      // showdata.push(...mockdata)
-      // setmatches(showdata)
   },[])
 
   const connect = async () =>{
@@ -92,23 +120,16 @@ function App() {
       if(ethereum.networkVersion != chainid){
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: hexchainid }], // chainId must be in hexadecimal numbers
+          params: [{ chainId: hexchainid }], 
         });
 
       }
       const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-      if(accounts){
-        setAccount(accounts[0]);
-      }
+
     }
     else
       window.location.href='https://metamask.io/download.html'
   }
-
-  const simpleaddress = (address) =>{
-    return address.slice(0,5) + "..."+ address.slice(address.length - 5, address.length)
-  }
-
   
   const timestamp2time = (timestamp)=>{
     let yourDate = new Date(timestamp * 1000)
@@ -122,120 +143,127 @@ function App() {
 
   async function gethistory(){
     navigate('/history')
-    
+  }
+
+  const timedifference = (timestamp) =>{
+    let now = Date.now()
+    let diff =  parseInt(timestamp) * 1000 - parseInt(now)
+    if(diff > 0){
+      var daysDifference = Math.floor(parseInt(diff)/1000/60/60);
+      return  ` ${daysDifference} hour left`
+    }else{
+      return ""
+    }
   }
 
   return (
-    <div className='main'>
-    <Box sx={{ flexGrow: 1}}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            LOGO
-          </Typography>
-          <Button onClick={e=>navigate("/allbets")}>All bettings</Button>
-          {account ?<Button onClick={e=>gethistory()} variant="contained">{simpleaddress(account)}</Button>:<Button onClick={connect} variant="contained">Connect</Button>}
-        </Toolbar>
-      </AppBar>
-    </Box>
-    <div className="App">
-      <Sidebar style={{borderColor:"#383737", fontSize:"20px"}} defaultCollapsed={true} collapsedWidth='61px'>
-        <Menu>
-        <MenuItem> <TbLayoutSidebarLeftCollapse/> </MenuItem>
-          <MenuItem> <GiSoccerBall/> Soccer</MenuItem>
-          <MenuItem> <CiFootball/> </MenuItem>
-          <MenuItem> <CiBasketball/> </MenuItem>
-        </Menu>
-      </Sidebar>
-      <header className="App-header">
-        <div className='rightbar'>
-          <div className='chat'>
-          &nbsp; <BsFillChatLeftFill/> Chat
-          </div>
-           {
-            chathistory.map((item)=>
-            <div className='chatitem'>
-              <img className='fakechatavatar'></img>&nbsp;
-              <span className='username'>{item.username}</span>
-                :&nbsp;
-              <span className='message'>{item.message}</span>  
-            </div>)
-           }
-        </div>
-        <Routes>
-          <Route exact path="/" element={
-            <div className='rightpadding'>
-              <div className='menubar'>
-                <span className='menuicon'><AiOutlineHome/></span>
-                <span className='menuicon'><AiOutlineStar/></span>
-                <span className='menuicon'><GiSoccerBall/></span>
-                <span className='menuicon'><CiBasketball/></span>
-                <span className='menuicon'><CiFootball/></span>
-                  
-              </div>
-            {/* <h2 className='title'>Today matches</h2> */}
-            <div className='list'>
-              {/* <button onClick={collapseSidebar}>adaf</button> */}
-              {
-                matches.map((item, key)=>
-                  <div className="d-flex flex-column matche_card" key={key} onClick={e => redirect(key)}>
-                    <div className="d-flex flex-row justify-content-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
-                      <div style={{ color: "rgb(115, 120, 131)" }}><GiSoccerBall /> {item.league.name}-{item.league.country}</div>
-                      <span style={{color: "rgb(115, 120, 131)"}}><TbAntennaBars4 /></span>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
-                      <div style={{ color: "yellow" }}>{item.fixture.status.long}</div>
-                      <span style={{color: "red", fontSize: "13px"}}><RiWirelessChargingFill /></span>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                      <div style={{ width: "180px" }}>
-                        {/* <img src={item.teams.home.logo} className="teamlogo"></img> */}
-                        <p style={{ display: "line", float: "left", marginLeft: "10px"}}>{item.teams.home.name}</p>
-                      </div>
-                      <div className="goalNum">{item.goals.home}</div>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                      <div style={{ width: "180px" }}>
-                        {/* <img src={item.teams.away.logo} className="teamlogo"></img> */}
-                        <p style={{ display: "line", float: "left", marginLeft: "10px"}}>{item.teams.away.name}</p>
-                      </div>
-                      <div className="goalNum">{item.goals.away}</div>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px", marginBottom: "5px" }}>
-                      <span style={{ color: "rgb(115, 120, 131)", fontSize: "11px"}}>1x2</span>
-                    </div>
-                    <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                      <div className="btnDiv flex-fill">
-                        <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{item.teams.home.name}</span>
-                        <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
-                      </div>
-                      <div className="btnDiv flex-fill">
-                        <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{item.teams.away.name}</span>
-                        <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              }
+    <WagmiConfig client={wagmiClient}>
+       <RainbowKitProvider theme={darkTheme()} chains={chains}>
+        <div className='main'>
+          <div className="navbar bg-[#171924] bg-base-100 borderb">
+            <div className="flex-1">
+              <a className="btn btn-ghost normal-case text-xl text-white ">LOGO</a>
+            </div>
+            <div className="flex-none">
+              <ul className="menu menu-horizontal px-1">
+                <li><span className='text-white'>{balance} CHIP3</span></li>
+                {isConnected?
+                  <li className='mr-[5px]' tabIndex={0}>
+                    <button class="bg-transparent btn btn-primary border-transparent hover:bg-transparent text-white hover:border-warning" onClick={e=>gethistory()}>All bettings</button>
+                  </li>:<></>
+                }
+                <li><ConnectButton showBalance={{ smallScreen: false, largeScreen: false}} label="CONNECT"/></li>
+              </ul>
             </div>
           </div>
-          }/>
-          <Route exact path="/:id" element={<Match/>}/>
-          <Route exact path="/history" element ={<History/>}/>
-          <Route exact path="/allbets" element ={<AllBets/>}/>
+        <div className="App">
+          <Sidebar  style={{borderColor:"#383737", fontSize:"20px"}} defaultCollapsed={true} collapsedWidth='61px'>
+            <Menu>
+              <MenuItem> <TbLayoutSidebarLeftCollapse/> </MenuItem>
+              <MenuItem> <GiSoccerBall/></MenuItem>
+              <MenuItem> <CiFootball/> </MenuItem>
+              <MenuItem> <CiBasketball/> </MenuItem>
+            </Menu>
+          </Sidebar>
+          <header className="App-header">
+            <div className={cn('rightbar', !showrightbar && 'hidden')}>
+              <div className='flex flex-row h-[25px]'>
+                <div className='flex justify-center pt-[2px] text-sm basis-1/3 rounded-md bg-yellow-400/30'>
+                  <BsFillChatLeftFill className='pr-1 mt-1'/><span>Chat</span>
+                </div>
+                <div className='absolute top-[-5px] right-[15px] cursor-pointer hover:scale-125 active:scale-100' value={showrightbar} onClick={e=>setshowrightbar(e.target.value)}>x</div>
+                &nbsp; 
+              </div>
+              {
+                chathistory.map((item)=>
+                <div className='chatitem flex flex-wrap'>
+                  <img className='fakechatavatar'></img>&nbsp;
+                  <span className='username'>{item.username}</span>
+                    :&nbsp;
+                  <span className='message'>{item.message}</span>  
+                </div>)
+              }
+            </div>
+            <div className='menubar flex'>
+                <AiOutlineHome className='hover:scale-125 active:scale-100' onClick={e=>navigate('/')}/>
+                <AiOutlineWechat onClick={e=>setshowrightbar(!showrightbar)} className={cn('absolute rounded-sm right-[20px] hover:scale-125 active:scale-100', showrightbar && 'hidden')}/>
+            </div>
+            <Routes>
+              <Route exact path="/" element={
+                <div className={cn('rightpadding', !showrightbar && 'nopadding')}>
+                <div className='list'>
+                  {
+                    matches.map((item, key)=>
+                      <div className="flex flex-wrap flex-col matche_card" key={key} onClick={e => redirect(key)}>
+                        <div className="flex flex-column justify-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
+                          <div className='flex' style={{ color: "rgb(115, 120, 131)" }}><GiSoccerBall className='pt-[5px]'/> <span>{item.league.name}-{item.league.country}</span></div>
+                          <span style={{color: "rgb(115, 120, 131)"}}><TbAntennaBars4 /></span>
+                        </div>
+                        <div className="flex flex-column justify-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
+                          <div style={{ color: "yellow" }}>{item.fixture.status.long}:{timedifference(item.fixture.timestamp)}</div>
+                          <span style={{color: "red", fontSize: "13px"}}><RiWirelessChargingFill /></span>
+                        </div>
+                        <div className="flex flex-column justify-between" style={{ fontSize: "14px" }}>
+                          <div  style={{ width: "180px" }}>
+                            <p className='text-left' style={{ display: "line", float: "left"}}>{item.teams.home.name}</p>
+                          </div>
+                          <div className="goalNum">{item.goals.home}</div>
+                        </div>
+                        <div className="flex flex-column justify-between mt-[2px]" style={{ fontSize: "14px" }}>
+                          <div style={{ width: "180px" }}>
+                            <p className='text-left' style={{ display: "line", float: "left"}}>{item.teams.away.name}</p>
+                          </div>
+                          <div className="goalNum">{item.goals.away}</div>
+                        </div>
+                        <div className="flex flex-column justify-between" style={{ fontSize: "14px", marginBottom: "5px" }}>
+                          <span style={{ color: "rgb(115, 120, 131)", fontSize: "11px"}}>1x2</span>
+                        </div>
+                        <div className="flex flex-column justify-between" style={{ fontSize: "14px" }}>
+                          <div className="btnDiv flex-fill">
+                            <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{item.teams.home.name}</span>
+                            <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
+                          </div>
+                          <div className="btnDiv flex-fill">
+                            <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{item.teams.away.name}</span>
+                            <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+              }/>
+              <Route exact path="/:id" element={<Match/>}/>
+              <Route exact path="/history" element ={<History/>}/>
+              <Route exact path="/allbets" element ={<AllBets/>}/>
 
-        </Routes>
-      </header>
-    </div>
-    </div>
+            </Routes>
+          </header>
+        </div>
+        </div>
+      </RainbowKitProvider>
+    </WagmiConfig>
   );
 }
 

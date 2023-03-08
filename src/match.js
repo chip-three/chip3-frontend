@@ -17,12 +17,19 @@ import { ethers } from 'ethers';
 import factoryabi from './factory.json'
 import nftabi from './erc1155.json'
 import Button from '@mui/material/Button';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import mockdata from './get_data.json';
+
+
+import {
+  useAccount,
+  useConnect,
+  useContract,
+  useContractRead,
+  useContractWrite,
+   usePrepareContractWrite,
+  useProvider,
+  useWaitForTransaction,
+  useSigner 
+} from "wagmi";
 
 const abi = require('erc-20-abi')
 
@@ -38,19 +45,21 @@ function generateRandomDecimalInRangeFormatted(min, max, places) {
 
 function Match() {
     const [schedules, setschedules] = useState([])
-    const [account, setAccount] = useState()
     const [open, setOpen] = useState(false);
     const [openbet, setopenbet] = useState(false)
     const [index, setIndex] = useState([])
-    const [current, setCurrent] = useState()
-    const [matches, setmatches]  =useState([])
-    const [name, setname] = useState()
-    const [symbol, setsymbol] = useState()
-    const [title, settitle] = useState()
     const [description, setdescription] = useState()
     const [amount, setamount] = useState()
     const [data, setdata] = useState()
     const {id} = useParams();
+   
+
+    const { activeConnector, isConnected , address} = useAccount()
+    const { connect, connectors, error, pendingConnector } = useConnect()
+
+    const { data: signer, isError, isLoading } = useSigner()
+
+    const [accounts, setAccount] = useState()
 
     const [value, setValue] = useState();
 
@@ -66,6 +75,7 @@ function Match() {
     };
 
     useEffect(()=>{
+      console.log(signer, isError, isLoading)
       timedifference()
       let config = {
           method: 'get',
@@ -82,19 +92,11 @@ function Match() {
           }
         })
 
-        // for(let item of mockdata ){
-        //   if(item.fixture.id == id){
-        //     setdata(item)
-        //     console.log(item)
-        //   }
-        // }
-
       let provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/')
       let vestingcontract = new ethers.Contract(factory, factoryabi, provider);
       vestingcontract.getMyContract(id)
       .then(result=>{
           setschedules(result)
-          console.log(result, id)
       })
     },[])
 
@@ -112,21 +114,9 @@ function Match() {
       })
     }
 
-    const connect = async () =>{
-      if(ethereum){
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        if(accounts){
-          setAccount(accounts[0]);
-        }
-      }
-      else
-        window.location.href='https://metamask.io/download.html'
-    }
-
     const handleClickOpen = (key) => {
       setopenbet(true);
       setIndex(schedules[key])
-      setCurrent(key)
     };
 
 
@@ -139,16 +129,12 @@ function Match() {
     };
     
     const create = async ()=>{
-      await connect()
       if(description && amount){
-          let provider = new ethers.providers.Web3Provider(ethereum);
-          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-          let signer = provider.getSigner();
+        if(isConnected){
+          console.log(address, signer, isError, isLoading)
           let nftContract = new ethers.Contract(factory, factoryabi, signer);
           let tokenContract = new ethers.Contract(token, abi, signer);
-          console.log(accounts[0], factory)
-          let allow = await tokenContract.allowance(accounts[0], factory)
-          console.log(accounts[0], parseInt(ethers.utils.formatEther(allow.toString())))
+          let allow = await tokenContract.allowance(address, factory)
           if(parseInt(ethers.utils.formatEther(allow.toString())) < 100000){
             let tx = await tokenContract.approve(factory, '100000000000000000000000000000000000')
             await tx.wait()
@@ -159,13 +145,16 @@ function Match() {
           console.log(rs)
           if(rs.confirmations > 0){
             axios.post(`${serverURL}/bet`, {
-              address: accounts[0],
+              address: address,
               matchId: id, 
               teamId: value, 
               amount: amount
             })
           }
           await getbets()
+        }else{
+          alert("connect wallet first")
+        }
       } else{
           alert('input all')
       }
@@ -173,39 +162,36 @@ function Match() {
     }
     
     const betwin = async ()=>{
-      console.log(index[6].toString())
-      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-      let provider = new ethers.providers.Web3Provider(ethereum);
-      let signer = provider.getSigner();
-      let tokenContract = new ethers.Contract(token, abi, signer);
-      let allow =await tokenContract.allowance(accounts[0], index[0])
-      if(parseInt(ethers.utils.formatEther(allow.toString())) < 100000){
-        let tx =await tokenContract.approve(index[0], '100000000000000000000000000000000000')
-        await tx.wait()
+      if(isConnected){
+        let tokenContract = new ethers.Contract(token, abi, signer);
+        let allow =await tokenContract.allowance(address, index[0])
+        if(parseInt(ethers.utils.formatEther(allow.toString())) < 100000){
+          let tx =await tokenContract.approve(index[0], '100000000000000000000000000000000000')
+          await tx.wait()
+        }
+        let nftContract = new ethers.Contract(index[0], nftabi, signer);
+        let tx =await nftContract.bet(index[6])
+        let rs = await tx.wait()
+        if(rs.confirmations > 0){
+          axios.post(`${serverURL}/bet`, {
+            address: address,
+            matchId: id, 
+            teamId: index[6].toString(), 
+            amount: index[3].toString()
+          })
+        }
+      }else{
+        alert("connect wallet")
       }
-      let nftContract = new ethers.Contract(index[0], nftabi, signer);
-      let tx =await nftContract.bet(index[6])
-      let rs = await tx.wait()
-      if(rs.confirmations > 0){
-        axios.post(`${serverURL}/bet`, {
-          address: accounts[0],
-          matchId: id, 
-          teamId: index[6].toString(), 
-          amount: index[3].toString()
-        })
-      }
+     
     }
 
     const betlose = async ()=>{
-      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-      console.log(index)
-      let provider = new ethers.providers.Web3Provider(ethereum);
-      let signer = provider.getSigner();
       let tokenContract = new ethers.Contract(token, abi, signer);
-      let allow = await tokenContract.allowance(accounts[0], index[0])
+      let allow = await tokenContract.allowance(address, index[0])
       let tx
       console.log({
-        ddress: accounts[0],
+        ddress: address,
         matchId: id, 
         teamId: index[6].toString(), 
         amount: index[3].toString()})
@@ -220,7 +206,7 @@ function Match() {
         let rs = await tx.wait()
         if(rs.confirmations > 0){
           axios.post(`${serverURL}/bet`, {
-            address: accounts[0],
+            address: address,
             matchId: id, 
             teamId: data.teams.away.id, 
             amount: index[3].toString()
@@ -243,12 +229,13 @@ function Match() {
 
     const timedifference = (timestamp) =>{
       let now = Date.now()
-      console.log(now, timestamp)
-      let yoadfurDate = new Date(now)
-      let diff = parseInt(now) - parseInt(timestamp) * 1000
-      console.log(yoadfurDate.toISOString())
-      var daysDifference = Math.floor(parseInt(diff)/1000/60/60);
-      return  ` ${daysDifference} hour left`
+      let diff =  parseInt(timestamp) * 1000 - parseInt(now)
+      if(diff > 0){
+        var daysDifference = Math.floor(parseInt(diff)/1000/60/60);
+        return  ` ${daysDifference} hour left`
+      }else{
+        return ""
+      }
     }
 
     return(
@@ -258,36 +245,36 @@ function Match() {
                     <h1 className="title">
                         {data.league.name}:{data.league.country}
                     </h1>
-                    <div className="row d-flex justify-content-center w-100">
+                    <div className="row flex justify-center w-100">
                         <div className="col-4 col-md-3" style={{color:status2style(data.fixture.status.long)}}> 
                             { data.fixture.status.long}
                         </div>                        
                     </div>
-                    <div className="row d-flex justify-content-center w-100">
+                    <div className="row flex justify-center w-100">
                       {data.fixture.status.long == "Not Started" ?<div style={{color:"red"}}>{timedifference(data.fixture.timestamp)}</div> :<></>}
                     </div>
                     <br/>
-                    <div className='mx-0 d-flex justify-content-center row teambigname'>
+                    <div className='mx-0 flex justify-center row teambigname'>
                       <div className='col-5 col-md-5'>
                         <img src={data.teams.home.logo} className="teambiglogo"></img>
                         <p>{data.teams.home.name}</p>
                       </div>
-                      <div className='d-flex flex-column justify-content-center divider'>:</div>
+                      <div className='flex flex-col justify-center divider'>:</div>
                       <div className='col-5 col-md-5'>
                         <img src={data.teams.away.logo} className="teambiglogo"></img>
                         <p>{data.teams.away.name}</p>
                       </div>
                     </div>
-                    <div className="row d-flex justify-content-center w-100 stadium">
+                    <div className="row flex justify-center w-100 stadium">
                         <p className="stadium">{data.fixture.venue.name}&nbsp;&nbsp;&nbsp;{data.fixture.venue.city}</p>
                     </div>
                     {
                       data.fixture.status.long == "Match Finished"?
-                      <div className='mx-0 d-flex justify-content-center row scorebig'>
+                      <div className='mx-0 flex justify-center row scorebig'>
                         <div className='col-5 col-md-5'>
                           {data.goals.home}
                         </div>
-                        <div className='d-flex flex-column justify-content-center'>:</div>
+                        <div className='flex flex-col justify-center'>:</div>
                         <div className='col-5 col-md-5'>
                         {data.goals.away}
                         </div>
@@ -317,18 +304,6 @@ function Match() {
               <DialogContent>
                 <DialogContentText>
                   <div className='column'>
-                    {/* <FormControl>
-                      <FormLabel id="demo-controlled-radio-buttons-group">Select Team</FormLabel>
-                      <RadioGroup
-                        aria-labelledby="demo-controlled-radio-buttons-group"
-                        name="controlled-radio-buttons-group"
-                        value={value}
-                        onChange={handleChange}
-                      >
-                        <FormControlLabel value={data?data.teams.home.id:""}  control={<Radio />} label={data?data.teams.home.name:""} />
-                        <FormControlLabel value={data?data.teams.away.id:""}  control={<Radio />} label={data?data.teams.away.name:""} />
-                      </RadioGroup>
-                    </FormControl> */}
                     <TextField InputLabelProps={{ shrink: true }} style={{color:"white"}} value={description} onChange={e=>setdescription(e.target.value)} autoFocus margin="dense" id="name" label="Bet description" variant="standard"/>
                     <TextField InputLabelProps={{ shrink: true }} style={{color:"white"}} value={amount} onChange={e=>setamount(e.target.value)} autoFocus margin="dense" id="name" label="Bet amount" variant="standard"/>
                   </div>
@@ -347,13 +322,10 @@ function Match() {
                     <Button variant="contained" onClick={betwin}>Bet on Win</Button>
                     &nbsp;
                     <Button variant="contained" onClick={betlose}>Bet on Lose</Button>
-                    {/* Beneficiary : {index.length != 0 ? index[0]:""}<br/>
-                    You will receive {index.length != 0 ? parseInt(ethers.utils.formatEther( ethers.BigNumber.from(index[3]._hex).toString())):''} CH3 */}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClosebet}>Cancel</Button>
-                    {/* <Button onClick={release}>Release</Button> */}
                 </DialogActions>
             </Dialog>
 
@@ -366,52 +338,52 @@ function Match() {
                   </TabList>
                 </Box>
                 <TabPanel value="1">
-                  <div className="d-flex flex-column">
+                  <div className="flex flex-col">
                     <div>
                       <p style={{ textAlign: "start" }}>1x2</p>
-                      <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                        <div className="btnDiv flex-fill" onClick={ e=>{setOpen(true); setValue(data.teams.home.id)} }>
+                      <div className="flex flex-row justify-between" style={{ fontSize: "14px" }}>
+                        <div className="btnDiv flex-auto" onClick={ e=>{setOpen(true); setValue(data.teams.home.id)} }>
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}} >{data? data.teams.home.name: ""}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"draw"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}  onClick={e=>{setOpen(true); setValue(data.teams.away.id)} }>{data?data.teams.away.name:""}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex flex-column">
+                    <div className="flex flex-col">
                       <p style={{ textAlign: "start" }}>Total</p>
-                      <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                        <div className="btnDiv flex-fill">
+                      <div className="flex flex-row justify-between" style={{ fontSize: "14px" }}>
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"over 5.5"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"under 5.5"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
                       </div>
-                      <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                        <div className="btnDiv flex-fill">
+                      <div className="flex flex-row justify-between" style={{ fontSize: "14px" }}>
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"over 6"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"under 6"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
                       </div>
-                      <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                        <div className="btnDiv flex-fill">
+                      <div className="flex flex-row justify-between" style={{ fontSize: "14px" }}>
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"over6.5"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"under 6.5"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
@@ -419,16 +391,16 @@ function Match() {
                     </div>
                     <div>
                       <p style={{ textAlign: "start" }}>1x2</p>
-                      <div className="d-flex flex-row justify-content-between" style={{ fontSize: "14px" }}>
-                        <div className="btnDiv flex-fill">
+                      <div className="flex flex-row justify-between" style={{ fontSize: "14px" }}>
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{data?data.teams.home.name:""}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"none"}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
-                        <div className="btnDiv flex-fill">
+                        <div className="btnDiv flex-auto">
                           <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{data?data.teams.away.name:""}</span>
                           <span style={{color: "white", float: "right"}}>{generateRandomDecimalInRangeFormatted(1, 99, 2)}</span>
                         </div>
