@@ -129,6 +129,10 @@
   font-weight: bold;
 }
 
+.height-97{
+  height: 97%
+}
+
 .starttime{
   color: rgb(236, 81, 81);
   font-size: 14px;
