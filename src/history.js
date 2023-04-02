@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import { serverURL , status2style} from "./App";
+import { serverURL} from "./App";
 import { useNavigate } from "react-router-dom";
-import mockdata from './hisotry.json';
-import {
-  configureChains,
-  createClient,
-  WagmiConfig,
-  useAccount } from 'wagmi';
-
+import { useAccount } from 'wagmi';
+import { useAtom } from 'jotai'
 import { RiWirelessChargingFill } from 'react-icons/ri';
 import { GiSoccerBall } from 'react-icons/gi';
 import { TbAntennaBars4 } from 'react-icons/tb';
+import { menustatu } from './atom'
+import cn from "classnames"
 
 function History() {
 
     const [history, sethistory] = useState([])
     const navigate = useNavigate();
     const { isConnected , address} = useAccount()
+    const [showrightbar, setshowrightbar] = useAtom(menustatu)
 
     useEffect(()=>{
         gethistory()
@@ -34,7 +32,6 @@ function History() {
         let res = await axios.post(`${serverURL}/history`,{
           address: address
         })
-        console.log(res.data)
         sethistory(res.data)
       }
       // sethistory(mockdata)
@@ -46,19 +43,16 @@ function History() {
     }
 
     const redirect = (key) =>{
-        console.log(history[key])
-
         navigate("/" + history[key][0].data.fixture.id)
     }
 
     function getcoinbalance(wei){
-        console.log(typeof(wei))
         if(wei)
           return wei.slice(0, wei.length - 18 )
       }
 
     return(
-    <div className='rightpadding'>
+      <div className={cn('rightpadding', !showrightbar && 'nopadding')}>
     {/* <h2 className='title'>Your betting</h2> */}
     <div className="list">
     {
@@ -70,21 +64,21 @@ function History() {
           </div>
           <div className="flex flex-column justify-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
             <div  className='flex' style={{ color: "yellow" }}>{item[0].data.fixture.status.long}</div>
-            <span style={{color: "red", fontSize: "13px"}}><RiWirelessChargingFill /></span>
+            {/* <span style={{color: "red", fontSize: "13px"}}><RiWirelessChargingFill /></span> */}
           </div>
           <div className="flex flex-column justify-between" style={{ fontSize: "14px" }}>
-            <div style={{ width: "180px" }}>
+            <div className="flex" style={{ width: "170px" }}>
               <img src={item[0].data.teams.home.logo} className="teamlogo"></img>
-              <p style={{ display: "line", float: "left", marginLeft: "10px"}}>{item[0].data.teams.home.name}</p>
+              <p className='text-left' style={{ display: "line", float: "left"}}>{item[0].data.teams.home.name}</p>
             </div>
-            <div className="goalNum">{item[0].data.goals.home}</div>
+            {/* <div className="goalNum">{item[0].data.goals.home}</div> */}
           </div>
           <div className="flex flex-column justify-between" style={{ fontSize: "14px" }}>
-            <div style={{ width: "180px" }}>
+            <div className="flex" style={{ width: "170px" }}>
               <img src={item[0].data.teams.away.logo} className="teamlogo"></img>
-              <p style={{ display: "line", float: "left", marginLeft: "10px"}}>{item[0].data.teams.away.name}</p>
+              <p className='text-left' style={{ display: "line", float: "left"}}>{item[0].data.teams.away.name}</p>
             </div>
-            <div className="goalNum">{item[0].data.goals.away}</div>
+            {/* <div className="goalNum">{item[0].data.goals.away}</div> */}
           </div>
           <div className="flex flex-column justify-between" style={{ fontSize: "14px", marginBottom: "5px" }}>
             <span style={{ color: "rgb(115, 120, 131)", fontSize: "11px"}}>1x2</span>
@@ -92,11 +86,11 @@ function History() {
           <div className="flex flex-column justify-between" style={{ fontSize: "14px" }}>
             <div className="grow btnDiv">
               <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{item[0].data.teams.home.name}</span>
-              <span style={{color: "white", float: "right"}}>44</span>
+              {/* <span style={{color: "white", float: "right"}}>44</span> */}
             </div>
             <div className="grow btnDiv">
               <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{item[0].data.teams.away.name}</span>
-              <span style={{color: "white", float: "right"}}>46</span>
+              {/* <span style={{color: "white", float: "right"}}>46</span> */}
             </div>
           </div>
           <div style={{color:"white", fontSize:"13px"}}>

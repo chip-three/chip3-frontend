@@ -40,8 +40,12 @@
 .ps-menu-button:hover{
   background-color: yellow !important;
   color: black !important;
+  
 }
-
+.ps-menu-button{
+  padding-left: 10px !important;
+  padding-right: 5px !important;
+}
 
 .App-link {
   color: #61dafb;
@@ -67,20 +71,12 @@
   margin-top: 90px;
 }
 
+
 .stadium{
   color: white;
-  font-size: 15px;
 }
 
-.card{
-  margin: 5px;
-  width: 150px;
-  height: 80px;
-  color: white;
-  font-size: 1rem;
-  background-color:rgb(23, 25, 36);
-  border-radius: 5px;
-}
+
 
 .card:hover{
   scale: 1.1;
@@ -155,8 +151,9 @@
 }
 
 .teamlogo{
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 .fakelogo {
@@ -174,6 +171,10 @@
   margin: 0;
 }
 
+.abcenter{
+  left: calc(50% - 200px)
+}
+
 .matche_card{
   border-radius: 5px;
   margin:10px;
@@ -181,6 +182,7 @@
   background-color: rgb(33, 37, 50);
   padding: 9px 14px;
 }
+
 .matche_card:hover{
   background-color: rgb(56, 61, 78);
   cursor: pointer;
@@ -285,14 +287,44 @@
   width:58px;
   max-width: 58px;
 }
+@media only screen and (max-width: 700px) {
+  .list {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 4px 25px !important;
+  }
+  .rightpadding{
+    margin-right: 5px !important;
+  }
+  .teambiglogo{
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .card{
+    width: 100px !important;
+    height: 60px !important;
+    font-size: 8px !important;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+  }
+}
 
-/* ul{
-  list-style-type: disc;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-  columns: 2;
-  list-style-position: inside;
-} */
+.card{
+  margin: 5px;
+  width: 150px;
+  height: 80px;
+  color: white;
+  font-size: 1rem;
+  background-color:rgb(23, 25, 36);
+  border-radius: 5px;
+}
+
+.teambiglogo{
+  width: 150px;
+  height: 150px;
+}
+
 
 .list {
   display: grid;
@@ -315,7 +347,6 @@
   padding: 10px 10px;
   font-size: 12px;
   border-radius: 5px;
-  margin: 2px 11px;
 }
 
 .resultCard {
