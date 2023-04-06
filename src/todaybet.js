@@ -23,10 +23,6 @@ function TodayBetting(){
         let yourDate = new Date(timestamp * 1000)
         return yourDate.toDateString() + yourDate.toTimeString()
       }
-    // const teamidtostring = (id) =>{
-    //     if(matchdata.teams.home.id == id) return matchdata.teams.home.name
-    //     else return matchdata.teams.away.name
-    // }
     const bignumberToint = (bignumber) => {
         return ethers.utils.formatEther(bignumber.toString()).toString()
     }

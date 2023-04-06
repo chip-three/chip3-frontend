@@ -33,7 +33,7 @@ import "reactjs-navbar/dist/index.css";
 import chathistory from './fakechathistory.json'
 import logo from './accent1.png'
 import logo1 from './icon.png'
-
+import data from './get_data.json'
 import factoryabi from './factory.json'
 
 const token = "0x6b15be00DBb3c2ffB808f40C1782F8EA83132afe"
@@ -110,24 +110,27 @@ function App() {
 
   useEffect(()=>{
     setshowmatchloading(true)
-    let config = {
-      method: 'get',
-      url: `${serverURL}/get_data`
-    };
-    axios(config)
-    .then(function (response) {
-      let showdata = []
-      for(const item of response.data){
-        if(item.fixture.status.long == "Not Started" || item.fixture.status.long == "First Half" || item.fixture.status.long == "Second Half"){
-          showdata.push(item)
-        }
-      }
-      showdata.sort((a, b)=>{
+    // let config = {
+    //   method: 'get',
+    //   url: `${serverURL}/get_data`
+    // };
+    // axios(config)
+    // .then(function (response) {
+    //   let showdata = []
+    //   for(const item of response.data){
+    //     if(item.fixture.status.long == "Not Started" || item.fixture.status.long == "First Half" || item.fixture.status.long == "Second Half"){
+    //       showdata.push(item)
+    //     }
+    //   }
+    //   showdata.sort((a, b)=>{
+    //     return a.fixture.timestamp - b.fixture.timestamp
+    //   })
+      data.sort((a, b)=>{
         return a.fixture.timestamp - b.fixture.timestamp
       })
-      setmatches(showdata)
+      setmatches(data)
       setshowmatchloading(false)
-    })
+    // })
   },[])
   
   const timestamp2time = (timestamp)=>{
