@@ -287,9 +287,16 @@
   width:58px;
   max-width: 58px;
 }
+.hoveryellow:hover{
+ color: yellow !important;
+}
+
+.focusyellow{
+  color: yellow !important;
+ }
+
 @media only screen and (max-width: 700px) {
   .list {
-    display: grid !important;
     grid-template-columns: repeat(1, 1fr) !important;
     gap: 4px 25px !important;
   }
@@ -321,8 +328,8 @@
 }
 
 .teambiglogo{
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
 }
 
 

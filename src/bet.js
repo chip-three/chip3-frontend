@@ -6,6 +6,7 @@ import cn from "classnames"
 import { menustatu, coinbalance } from './atom'
 import { useAtom } from 'jotai'
 import axios from 'axios'
+import { motion } from "framer-motion";
 import { serverURL , status2style} from "./App";
 import {
     useAccount,
@@ -74,7 +75,8 @@ function Bet() {
         return ethers.utils.formatEther(bignumber.toString()).toString()
     }
 
-    const betwin = async ()=>{
+    const betwin = async ()=>{  
+      console.log(data[0])
        
         if(isConnected){
           setshowloadingbutton(true)
@@ -109,9 +111,9 @@ function Bet() {
               setshowconfirm(false)
             }, 2500)
             
-
           }
           catch(e){
+            console.log(e)
             setshowloadingbutton(false)
           }
           
@@ -199,6 +201,13 @@ function Bet() {
       }
 
     return(
+      <motion.main
+      className="main__container"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: "100%", opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
         <div className={cn('rightpadding', !showrightbar && 'nopadding')}>
           {
             showcopied?
@@ -236,12 +245,9 @@ function Bet() {
           </div>:
           <>
             {matchdata ?
-            <div className="mt-[26px] resultCard mx-3">
+            <div className="pb-[15px] mt-[26px] resultCard mx-3">
                 <h1 className="title justify-center flex flex-row text-[30px] max-sm:text-[15px]">
                   <div className="text-center">{matchdata.league.name} : {matchdata.league.country}</div>
-                    {/* <div className="basis-2/5 text-center">{matchdata.league.name}</div>
-                    <div className="basis-1/5 text-center">:</div>
-                    <div className="basis-2/5 text-center"> {matchdata.league.country}</div> */}
                 </h1>
                 <div className="row flex justify-center w-full">
                     <div className="text-[20px] max-sm:text-[10px]" style={{color:status2style(matchdata.fixture.status.long)}}> 
@@ -257,7 +263,10 @@ function Bet() {
                     <img src={matchdata.teams.home.logo} className="teambiglogo"></img>
                     <p className="max-sm:text-[10px] text-[15px]">{matchdata.teams.home.name}</p>
                     </div>
-                    <div className='basis-1/9 flex flex-col justify-between divider'>:</div>
+                    <div className='basis-1/9 flex flex-col justify-between divider'>
+                      <div>:</div>
+                      <div>{bignumberToint(data[3])} CHIP3</div>
+                    </div>
                     <div className='basis-4/9 justify-center'>
                     <img src={matchdata.teams.away.logo} className="teambiglogo"></img>
                     <p className="max-sm:text-[10px] text-[15px]">{matchdata.teams.away.name}</p>
@@ -286,11 +295,11 @@ function Bet() {
             {
                 data && matchdata &&
                 <div>
-                    { 
+                    {/* { 
                         bignumberToint(data[6]) == matchdata.teams.away.id?
                         <div> { matchdata.teams.away.name} is win <br/>(betamount is {bignumberToint(data[3])} CHIP3) </div>:
                         <div> { matchdata.teams.home.name} is win <br/>(betamount is {bignumberToint(data[3])} CHIP3)</div>
-                    }
+                    } */}
                     <div className="flex mt-[20px] flex-wrap justify-center">
                         <label onClick={e=>share()} className="btn w-[120px] max-sm:m-[3px] ">Share bet</label>
                         <label onClick={e=>betwin()} className="btn w-[120px] max-sm:m-[3px] ">
@@ -367,6 +376,7 @@ function Bet() {
             </div>
           </>}
         </div>
+        </motion.main>
     )
 }
 

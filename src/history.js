@@ -9,6 +9,8 @@ import { GiSoccerBall } from 'react-icons/gi';
 import { TbAntennaBars4 } from 'react-icons/tb';
 import { menustatu } from './atom'
 import cn from "classnames"
+import { motion } from "framer-motion";
+
 
 function History() {
 
@@ -51,13 +53,49 @@ function History() {
           return wei.slice(0, wei.length - 18 )
       }
 
+      const container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          transition: {
+            delayChildren: 0.3,
+            staggerChildren: 1,
+            duration: 0.2 
+          }
+        }
+      };
+  
+      const variants = {
+        visible: i => ({
+          opacity: 1,
+          transition: {
+            delay: i * 0.1,
+          },
+        }),
+        hidden: { opacity: 0 },
+      }
+      
+
     return(
+      <motion.main
+      className="main__container"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: "100%", opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
       <div className={cn('rightpadding', !showrightbar && 'nopadding')}>
     {/* <h2 className='title'>Your betting</h2> */}
-    <div className="list">
+    <motion.ul
+        className='list'
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
     {
       history.length != 0 ? history.map((item, key)=>
-      <div className="flex flex-wrap flex-col matche_card" key={key} onClick={e=>redirect(key)}>
+      <motion.li  custom={key} variants={variants} className="flex flex-wrap flex-col matche_card" key={key} onClick={e=>redirect(key)}>
           <div className="flex flex-column justify-between" style={{ fontSize: "11px", marginBottom: "5px" }}>
             <div  className='flex' style={{ color: "rgb(115, 120, 131)" }}><GiSoccerBall className='pt-[5px]' /> {item[0].data.league.name}-{item[0].data.league.country}</div>
             <span style={{color: "rgb(115, 120, 131)"}}><TbAntennaBars4 /></span>
@@ -96,7 +134,7 @@ function History() {
           <div style={{color:"white", fontSize:"13px"}}>
                  Betting amount:{getcoinbalance(item[1].amount)?getcoinbalance(item[1].amount):150}
             </div>
-        </div>
+        </motion.li>
         // <div className='matche_card' key={key} onClick={e=>redirect(key)}>
         //     <div className='mx-0 flex justify-between row leaguename'>
         //         <div className='col-5 col-md-5'>
@@ -138,8 +176,9 @@ function History() {
         // </div>
       ):<></>
     }
-    </div>
+    </motion.ul>
   </div>
+  </motion.main>
   )
 }
 

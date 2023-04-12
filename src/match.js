@@ -12,6 +12,7 @@ import {
 } from "wagmi";
 import cn from "classnames"
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const abi = require('erc-20-abi')
 
@@ -211,6 +212,13 @@ function Match() {
     }
 
     return(
+      <motion.main
+                  className="main__container"
+                  initial={{ width: 0 }}
+                   animate={{ width: "100%" }}
+                   exit={{ x: "100%", opacity: 0 }}
+                   transition={{ duration: 2 }}
+                  >
       <div className={cn('rightpadding', !showrightbar && 'nopadding')}>
         {
             showconfirm?
@@ -273,7 +281,7 @@ function Match() {
                     </div>
                     <div className='flex flex-col justify-center'>:</div>
                     <div className='col-5 col-md-5'>
-                    {data.goals.away}
+                      {data.goals.away}
                     </div>
                   </div>  :<></>
                 }
@@ -300,71 +308,18 @@ function Match() {
             <div></div>}
             <div className="flex flex-col">
             <div>
-              <p className="max-sm:text-[12px] text-[18px]" style={{ textAlign: "start" }}>1x2</p>
-              <div className="flex flex-row justify-between gap-[10px] mx-[10px]" style={{ fontSize: "14px" }}>
+              {/* <p className="max-sm:text-[12px] text-[18px]" style={{ textAlign: "start" }}>1x2</p> */}
+              <div className="flex mt-[20px] flex-row justify-between gap-[10px] mx-[10px]" style={{ fontSize: "14px" }}>
                 <label htmlFor="modal-1" onClick={e=>{setshowmodal(true);setValue(data.teams.home.id)}} className="btnDiv basis-1/2 justify-between flex-auto btn modal-button">
                   <span style={{color: "rgb(115, 120, 131)", float: "left"}} >{data? data.teams.home.name: ""}</span>
-                  {/* <span style={{color: "white", float: "right"}}>50</span> */}
                 </label>
-                {/* <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"draw"}</span>
-                </div> */}
                 <label htmlFor="modal-1" onClick={e=>{setshowmodal(true);setValue(data.teams.away.id)}} className="btnDiv basis-1/2 justify-between flex-auto btn modal-button">
                   <span style={{color: "rgb(115, 120, 131)", float: "left"}} >{data? data.teams.away.name: ""}</span>
-                  {/* <span style={{color: "white", float: "right"}}>50</span> */}
+
                 </label>
               </div>
             </div>
-            <div className="flex flex-col">
-              <p className="max-sm:text-[12px] text-[18px] gap-[10px] " style={{ textAlign: "start" }}>Total</p>
-              <div className="flex flex-row justify-between gap-[10px] mx-[10px]" style={{ fontSize: "14px" }}>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"over 5.5"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>33</span> */}
-                </div>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"under 5.5"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>33</span> */}
-                </div>
-              </div>
-              <div className="flex flex-row justify-between gap-[10px] mx-[10px]" style={{ fontSize: "14px" }}>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"over 6"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>33</span> */}
-                </div>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"under 6"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>33</span> */}
-                </div>
-              </div>
-              <div className="flex flex-row justify-between gap-[10px] mx-[10px]" style={{ fontSize: "14px" }}>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"over6.5"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>33</span> */}
-                </div>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"under 6.5"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>33</span> */}
-                </div>
-              </div>
-            </div>
-            <div>
-              <p className="max-sm:text-[12px] text-[18px]" style={{ textAlign: "start" }}>1x2</p>
-              <div className="flex flex-row justify-between gap-[10px] mx-[10px]" style={{ fontSize: "14px" }}>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{data?data.teams.home.name:""}</span>
-                  {/* <span style={{color: "white", float: "right"}}>44</span> */}
-                </div>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{"none"}</span>
-                  {/* <span style={{color: "white", float: "right"}}>44</span> */}
-                </div>
-                <div className="btnDiv flex-auto">
-                  <span style={{color: "rgb(115, 120, 131)", float: "left"}}>{data?data.teams.away.name:""}</span>
-                  {/* <span style={{color: "white", float: "right"}}>44</span> */}
-                </div>
-              </div>
-            </div>
+            
           </div>
           </>
       }
@@ -419,7 +374,7 @@ function Match() {
 
 
         </div>
-      </div>
+      </div></motion.main>
     )
 }
 export default Match;
