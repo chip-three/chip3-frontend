@@ -10,6 +10,7 @@ import { TbAntennaBars4 } from "react-icons/tb";
 import { menustatu } from "../store/atom";
 import cn from "classnames";
 import { motion } from "framer-motion";
+import LayoutAnimation from "./layoutAnimation";
 
 function History() {
   const [history, sethistory] = useState([]);
@@ -77,13 +78,7 @@ function History() {
   };
 
   return (
-    <motion.main
-      className="main__container"
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{ duration: 2 }}
-    >
+    <LayoutAnimation>
       <div className={cn("rightpadding", !showrightbar && "nopadding")}>
         {/* <h2 className='title'>Your betting</h2> */}
         <motion.ul
@@ -92,7 +87,7 @@ function History() {
           initial="hidden"
           animate="visible"
         >
-          {history.length != 0 ? (
+          {history.length != 0 &&
             history.map(
               (item, key) => (
                 <motion.li
@@ -240,13 +235,10 @@ function History() {
               //         Betting amount:{getcoinbalance(item[1].amount)}
               //     </div>
               // </div>
-            )
-          ) : (
-            <></>
-          )}
+            )}
         </motion.ul>
       </div>
-    </motion.main>
+    </LayoutAnimation>
   );
 }
 

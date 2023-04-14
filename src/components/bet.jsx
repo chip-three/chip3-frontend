@@ -15,7 +15,8 @@ import nftabi from "../constants/erc1155.json";
 const factory = "0xBf1cc2806d3506a6118Ca3308492a7cAA465Fdb7";
 const token = "0x6b15be00DBb3c2ffB808f40C1782F8EA83132afe";
 
-// const abi = require("erc-20-abi");
+import abi from "erc-20-abi";
+import LayoutAnimation from "./layoutAnimation";
 
 function Bet() {
   const { id, id1 } = useParams();
@@ -205,13 +206,7 @@ function Bet() {
   };
 
   return (
-    <motion.main
-      className="main__container"
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{ duration: 2 }}
-    >
+    <LayoutAnimation>
       <div className={cn("rightpadding", !showrightbar && "nopadding")}>
         {showcopied ? (
           <div className="duration-500 mx-3 abcenter absolute w-[250px] alert alert-success shadow-lg">
@@ -431,7 +426,7 @@ function Bet() {
             )}
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
-              {betlist.length != 0 ? (
+              {betlist.length != 0 && (
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -469,14 +464,12 @@ function Bet() {
                     ))}
                   </tbody>
                 </table>
-              ) : (
-                <></>
               )}
             </div>
           </>
         )}
       </div>
-    </motion.main>
+    </LayoutAnimation>
   );
 }
 

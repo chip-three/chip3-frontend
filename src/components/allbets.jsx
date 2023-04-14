@@ -5,6 +5,8 @@ import mockdata from "../constants/hisotry.json";
 import { RiWirelessChargingFill } from "react-icons/ri";
 import { GiSoccerBall } from "react-icons/gi";
 import { TbAntennaBars4 } from "react-icons/tb";
+import { motion } from "framer-motion";
+import LayoutAnimation from "./layoutAnimation";
 
 function AllBets() {
   const [history, sethistory] = useState([]);
@@ -41,9 +43,9 @@ function AllBets() {
   };
 
   return (
-    <div className="rightpadding">
+    <LayoutAnimation>
       <div className="list">
-        {history.length != 0 ? (
+        {history.length != 0 &&
           history.map((item, key) => (
             <div
               className="d-flex flex-column matche_card"
@@ -151,12 +153,9 @@ function AllBets() {
                   : 150}
               </div>
             </div>
-          ))
-        ) : (
-          <></>
-        )}
+          ))}
       </div>
-    </div>
+    </LayoutAnimation>
   );
 }
 

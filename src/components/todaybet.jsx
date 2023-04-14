@@ -6,6 +6,7 @@ import { menustatu, coinbalance } from "../store/atom";
 import { useAtom } from "jotai";
 import cn from "classnames";
 import { motion } from "framer-motion";
+import LayoutAnimation from "./layoutAnimation";
 
 function TodayBetting() {
   const [history, sethistory] = useState([]);
@@ -29,13 +30,7 @@ function TodayBetting() {
   };
 
   return (
-    <motion.main
-      className="main__container"
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{ duration: 2 }}
-    >
+    <LayoutAnimation>
       <div className={cn("rightpadding", !showrightbar && "nopadding")}>
         <h1>Today bets</h1>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
@@ -83,7 +78,7 @@ function TodayBetting() {
           )}
         </div>
       </div>
-    </motion.main>
+    </LayoutAnimation>
   );
 }
 

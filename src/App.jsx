@@ -1,7 +1,7 @@
 import "./css/App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Match from "./components/match";
 import { useNavigate, useLocation } from "react-router-dom";
 import History from "./components/history";
@@ -34,7 +34,8 @@ import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 
 const token = "0x6b15be00DBb3c2ffB808f40C1782F8EA83132afe";
-// const abi = require("erc-20-abi");
+import abi from "erc-20-abi";
+import LayoutAnimation from "./components/layoutAnimation";
 
 export const serverURL = "https://chip3-server-production.up.railway.app";
 // export const serverURL = "http://127.0.0.1:5000"
@@ -273,21 +274,14 @@ function App() {
     hidden: { opacity: 0 },
   };
 
-  const items = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 120 },
-    },
-  };
+  console.log({ location });
 
   return (
-    <html data-theme="cupcake">
-      <div className="main">
-        <div className="navbar bg-[#171924] borderb">
+    <html data-theme="cyberpunk">
+      <div className="overflow-hidden min-h-screen">
+        <div className="navbar bg-base-100">
           <div className="flex-1">
-            <a className="btn btn-ghost normal-case text-xl text-white ">
+            <a className="btn btn-ghost normal-case text-xl">
               {size.width < 640 ? (
                 <img
                   className="max-sm:w-[55px] max-sm:h-[55px] w-[240px] h-[60px] my-[-65px]"
@@ -304,7 +298,7 @@ function App() {
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1">
               <li className="max-sm:hidden">
-                <span className="max-sm:hidden text-white">
+                <span className="max-sm:hidden font-mono">
                   {balance} CHIP3{" "}
                 </span>
               </li>
@@ -317,45 +311,10 @@ function App() {
             </ul>
           </div>
         </div>
-        <div className="App">
-          {/* <Sidebar  style={{borderColor:"#383737", fontSize:"20px"}} defaultCollapsed={true} collapsedWidth='40px'>
-            <Menu>
-              <MenuItem> <GiSoccerBall/></MenuItem>
-            </Menu>
-          </Sidebar> */}
-          <header className="App-header">
-            <div className={cn("rightbar", !showrightbar && "hidden")}>
-              <div className="flex flex-row h-[25px]">
-                <div className="flex justify-center pt-[2px] text-sm basis-1/3 rounded-md bg-yellow-400/30">
-                  <BsFillChatLeftFill className="pr-1 mt-1" />
-                  <span>Chat</span>
-                </div>
-                {isConnected ? (
-                  <button
-                    className="bg-transparent btn p-[2px] ml-[3px] min-h-[30px] h-[30px] border-transparent hover:bg-transparent text-white hover:border-warning"
-                    onClick={(e) => gethistory()}
-                  >
-                    HISTORY
-                  </button>
-                ) : (
-                  <></>
-                )}
-                <div
-                  className="absolute top-[-5px] right-[15px] cursor-pointer hover:scale-125 active:scale-100"
-                  value={showrightbar}
-                  onClick={(e) => setshowrightbar(e.target.value)}
-                >
-                  x
-                </div>
-                &nbsp;
-              </div>
-            </div>
-            <div className="menubar flex text-[17px]">
-              <span
-                className={cn(
-                  "mx-2 hoveryellow hover:scale-110 active:scale-100",
-                  matchclick && "focusyellow scale-110"
-                )}
+        <div>
+          <header>
+            <div className="tabs tabs-boxed mx-2">
+              {/* <span
                 onClick={(e) => {
                   navigate("/");
                 }}
@@ -363,10 +322,6 @@ function App() {
                 Matches
               </span>
               <span
-                className={cn(
-                  "mx-2 hoveryellow hover:scale-110 active:scale-100",
-                  tmatchclick && "focusyellow scale-110"
-                )}
                 onClick={(e) => {
                   navigate("/today_bettings");
                 }}
@@ -374,33 +329,47 @@ function App() {
                 Today's Bets
               </span>
               <span
-                className={cn(
-                  "mx-2 hoveryellow hover:scale-110 active:scale-100",
-                  bmatchclick && "focusyellow scale-110"
-                )}
                 onClick={(e) => {
                   gethistory();
                 }}
               >
                 My Bets
-              </span>
-
-              {/* <AiOutlineHome className='text-[24px] hover:scale-125 active:scale-100' onClick={e=>navigate('/')}/>
-                <AiOutlineHistory className='text-[24px] ml-[15px] hover:scale-125 active:scale-100' onClick={e=>navigate('/today_bettings')}/>
-                <AiOutlineWechat onClick={e=>setshowrightbar(true)} className={cn('absolute rounded-sm right-[20px] text-[24px] hover:scale-125 active:scale-100', showrightbar && 'hidden')}/> */}
+              </span> */}
+              <Link
+                className={cn({
+                  tab: true,
+                  ["tab-active"]: location.pathname === "/",
+                })}
+                to="/"
+              >
+                Matches
+              </Link>
+              <Link
+                className={cn({
+                  tab: true,
+                  ["tab-active"]: location.pathname === "/today_bettings",
+                })}
+                to="/today_bettings"
+              >
+                Today's Bets
+              </Link>
+              <Link
+                className={cn({
+                  tab: true,
+                  ["tab-active"]: location.pathname === "/history",
+                })}
+                to="/history"
+              >
+                My Bets
+              </Link>
             </div>
-            <AnimatePresence>
-              <Routes>
+            <AnimatePresence mode="wait">
+              <Routes key={location.pathname} location={location}>
                 <Route
                   exact
                   path="/"
                   element={
-                    <div
-                      className={cn(
-                        "rightpadding",
-                        !showrightbar && "nopadding"
-                      )}
-                    >
+                    <LayoutAnimation>
                       {showmatchloading ? (
                         <div className="flex height-97 mb-3 items-center justify-center mt-[10px] resultCard mx-3">
                           <div role="status">
@@ -426,158 +395,76 @@ function App() {
                       ) : (
                         <div>
                           <motion.ul
-                            className="list"
                             variants={container}
                             initial="hidden"
                             animate="visible"
+                            className="p-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
                           >
                             {matches.map((item, key) => (
                               <motion.li
                                 custom={key}
                                 variants={variants}
-                                className="flex flex-wrap flex-col matche_card"
                                 key={key}
-                                onClick={(e) => redirect(key)}
                               >
-                                <div
-                                  className="flex flex-column justify-between"
-                                  style={{
-                                    fontSize: "11px",
-                                    marginBottom: "5px",
+                                <motion.button
+                                  className="btn flex flex-col w-full h-full p-4 items-start"
+                                  whileHover={{
+                                    scale: 1.02,
+                                    transition: { duration: 0.2 },
+                                  }}
+                                  onClick={() => {
+                                    redirect(key);
                                   }}
                                 >
-                                  <div
-                                    className="flex"
-                                    style={{ color: "rgb(115, 120, 131)" }}
-                                  >
-                                    <GiSoccerBall className="pt-[5px]" />{" "}
+                                  <div className="text-xs">
+                                    {item.league.country}.{item.league.name}
+                                  </div>
+                                  <div className="flex flex-column justify-between text-[0.7em]">
+                                    <div className="text-base-100">
+                                      {timedifference(item)}
+                                    </div>
                                     <span>
-                                      {item.league.name}-{item.league.country}
+                                      {timedifference(item) == "Second Half" ||
+                                      timedifference(item) == "First Half" ? (
+                                        <RiWirelessChargingFill />
+                                      ) : (
+                                        <></>
+                                      )}
                                     </span>
                                   </div>
-                                  <span style={{ color: "rgb(115, 120, 131)" }}>
-                                    <TbAntennaBars4 />
-                                  </span>
-                                </div>
-                                <div
-                                  className="flex flex-column justify-between"
-                                  style={{
-                                    fontSize: "11px",
-                                    marginBottom: "5px",
-                                  }}
-                                >
-                                  <div style={{ color: "yellow" }}>
-                                    {timedifference(item)}
-                                  </div>
-                                  <span
-                                    style={{ color: "red", fontSize: "13px" }}
-                                  >
-                                    {timedifference(item) == "Second Half" ||
-                                    timedifference(item) == "First Half" ? (
-                                      <RiWirelessChargingFill />
-                                    ) : (
-                                      <></>
-                                    )}
-                                  </span>
-                                </div>
-                                <div
-                                  className="flex flex-column justify-between"
-                                  style={{ fontSize: "14px" }}
-                                >
-                                  <div className="flex">
-                                    {/* <img src={item.teams.home.logo} className="teamlogo"></img> */}
-                                    <p
-                                      className="text-left"
-                                      style={{ display: "line", float: "left" }}
-                                    >
-                                      {item.teams.home.name}
-                                    </p>
-                                  </div>
-                                  {timedifference(item) == "Second Half" ||
-                                  timedifference(item) == "First Half" ? (
-                                    <div className="goalNum">
-                                      {item.goals.home}
+                                  <div className="flex flex-column justify-between my-4">
+                                    <div className="flex flex-row gap-2 items-center justify-center">
+                                      <img
+                                        src={item.teams.home.logo}
+                                        className="h-10 w-10"
+                                      />
+                                      <div>{item.teams.home.name}</div>
+                                      {timedifference(item) == "Second Half" ||
+                                        (timedifference(item) ==
+                                          "First Half" && (
+                                          <div className="goalNum">
+                                            {item.goals.home}
+                                          </div>
+                                        ))}
                                     </div>
-                                  ) : (
-                                    <></>
-                                  )}
-                                  {/* <div className="goalNum">{item.goals.home}</div> */}
-                                </div>
-                                <div
-                                  className="flex flex-column justify-between mt-[2px]"
-                                  style={{ fontSize: "14px" }}
-                                >
-                                  <div className="flex">
-                                    {/* <img src={item.teams.away.logo} className="teamlogo"></img> */}
-                                    <p
-                                      className="text-left"
-                                      style={{ display: "line", float: "left" }}
-                                    >
-                                      {item.teams.away.name}
-                                    </p>
                                   </div>
-                                  {timedifference(item) == "Second Half" ||
-                                  timedifference(item) == "First Half" ? (
-                                    <div className="goalNum">
-                                      {item.goals.away}
+                                  <div className="flex flex-column mt-[2px]">
+                                    <div className="flex flex-row gap-2 items-center justify-center">
+                                      <img
+                                        src={item.teams.away.logo}
+                                        className="h-10 w-10"
+                                      />
+                                      <div>{item.teams.away.name}</div>
+                                      {timedifference(item) == "Second Half" ||
+                                        (timedifference(item) ==
+                                          "First Half" && (
+                                          <div className="goalNum">
+                                            {item.goals.away}
+                                          </div>
+                                        ))}
                                     </div>
-                                  ) : (
-                                    <></>
-                                  )}
-                                  {/* <div className="goalNum">{item.goals.away}</div> */}
-                                </div>
-                                <div className="flex flex-row justify-between test-[14px] mb-[5px]">
-                                  <span
-                                    style={{
-                                      color: "rgb(115, 120, 131)",
-                                      fontSize: "11px",
-                                    }}
-                                  >
-                                    1x2
-                                  </span>
-                                </div>
-                                <div className="flex flex-row justify-between gap-[10px] test-[14px]">
-                                  <label
-                                    htmlFor="modal-1"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setshowmodal(true);
-                                      setKey(key);
-                                      setValue(item.teams.home.id);
-                                    }}
-                                    className="btnDiv basis-1/2 justify-between flex-auto btn modal-button"
-                                  >
-                                    <span
-                                      style={{
-                                        color: "rgb(115, 120, 131)",
-                                        float: "left",
-                                      }}
-                                    >
-                                      {item ? item.teams.home.name : ""}
-                                    </span>
-                                    {/* <span style={{color: "white", float: "right"}}>50</span> */}
-                                  </label>
-                                  <label
-                                    htmlFor="modal-1"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setshowmodal(true);
-                                      setKey(key);
-                                      setValue(item.teams.away.id);
-                                    }}
-                                    className="btnDiv basis-1/2 justify-between flex-auto btn modal-button"
-                                  >
-                                    <span
-                                      style={{
-                                        color: "rgb(115, 120, 131)",
-                                        float: "left",
-                                      }}
-                                    >
-                                      {item ? item.teams.away.name : ""}
-                                    </span>
-                                    {/* <span style={{color: "white", float: "right"}}>50</span> */}
-                                  </label>
-                                </div>
+                                  </div>
+                                </motion.button>
                               </motion.li>
                             ))}
                           </motion.ul>
@@ -587,7 +474,7 @@ function App() {
                             id="modal-1"
                             className="modal-toggle"
                           />
-                          {showmodal ? (
+                          {showmodal && (
                             <div className="modal">
                               <div className="modal-box  bg-[#171924]">
                                 <h1 className="font-bold text-[23px] mb-[12px]">
@@ -642,12 +529,10 @@ function App() {
                                 </div>
                               </div>
                             </div>
-                          ) : (
-                            <></>
                           )}
                         </div>
                       )}
-                    </div>
+                    </LayoutAnimation>
                   }
                 />
                 <Route exact path="/:id" element={<Match />} />
