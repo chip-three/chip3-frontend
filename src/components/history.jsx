@@ -33,6 +33,7 @@ function History() {
         address: address,
       });
       sethistory(res.data);
+      console.log(res.data)
     }
     // sethistory(mockdata)
   };
@@ -53,6 +54,21 @@ function History() {
   function getcoinbalance(wei) {
     if (wei) return wei.slice(0, wei.length - 18);
   }
+
+  const timedifference = (item) => {
+    let now = Date.now();
+    let diff = parseInt(item.fixture.timestamp) * 1000 - parseInt(now);
+    if (diff > 0) {
+      var daysDifference = Math.floor(parseInt(diff) / 1000 / 60 / 60);
+      if (daysDifference != 0) return `Not started ${daysDifference} hour left`;
+      else
+        return `Not started ${Math.floor(
+          parseInt(diff) / 1000 / 60
+        )} Minutes left`;
+    } else {
+      return item.fixture.status.long;
+    }
+  };
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
@@ -80,121 +96,64 @@ function History() {
   return (
     <LayoutAnimation>
       <div className={cn("rightpadding", !showrightbar && "nopadding")}>
-        {/* <h2 className='title'>Your betting</h2> */}
         <motion.ul
-          className="list"
           variants={container}
           initial="hidden"
           animate="visible"
+          className="p-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {history.length != 0 &&
             history.map(
               (item, key) => (
                 <motion.li
-                  custom={key}
-                  variants={variants}
-                  className="flex flex-wrap flex-col matche_card"
-                  key={key}
-                  onClick={(e) => redirect(key)}
-                >
-                  <div
-                    className="flex flex-column justify-between"
-                    style={{ fontSize: "11px", marginBottom: "5px" }}
+                    custom={key}
+                    variants={variants}
+                    key={key}
                   >
-                    <div
-                      className="flex"
-                      style={{ color: "rgb(115, 120, 131)" }}
+                    <motion.button
+                      className="btn flex flex-col w-full h-full p-4 items-start"
+                      whileHover={{
+                        scale: 1.02,
+                        transition: { duration: 0.2 },
+                      }}
+                      onClick={() => {
+                        redirect(key);
+                      }}
                     >
-                      <GiSoccerBall className="pt-[5px]" />{" "}
-                      {item[0].data.league.name}-{item[0].data.league.country}
-                    </div>
-                    <span style={{ color: "rgb(115, 120, 131)" }}>
-                      <TbAntennaBars4 />
-                    </span>
-                  </div>
-                  <div
-                    className="flex flex-column justify-between"
-                    style={{ fontSize: "11px", marginBottom: "5px" }}
-                  >
-                    <div className="flex" style={{ color: "yellow" }}>
-                      {item[0].data.fixture.status.long}
-                    </div>
-                    {/* <span style={{color: "red", fontSize: "13px"}}><RiWirelessChargingFill /></span> */}
-                  </div>
-                  <div
-                    className="flex flex-column justify-between"
-                    style={{ fontSize: "14px" }}
-                  >
-                    <div className="flex" style={{ width: "170px" }}>
-                      <img
-                        src={item[0].data.teams.home.logo}
-                        className="teamlogo"
-                      ></img>
-                      <p
-                        className="text-left"
-                        style={{ display: "line", float: "left" }}
-                      >
-                        {item[0].data.teams.home.name}
-                      </p>
-                    </div>
-                    {/* <div className="goalNum">{item[0].data.goals.home}</div> */}
-                  </div>
-                  <div
-                    className="flex flex-column justify-between"
-                    style={{ fontSize: "14px" }}
-                  >
-                    <div className="flex" style={{ width: "170px" }}>
-                      <img
-                        src={item[0].data.teams.away.logo}
-                        className="teamlogo"
-                      ></img>
-                      <p
-                        className="text-left"
-                        style={{ display: "line", float: "left" }}
-                      >
-                        {item[0].data.teams.away.name}
-                      </p>
-                    </div>
-                    {/* <div className="goalNum">{item[0].data.goals.away}</div> */}
-                  </div>
-                  <div
-                    className="flex flex-column justify-between"
-                    style={{ fontSize: "14px", marginBottom: "5px" }}
-                  >
-                    <span
-                      style={{ color: "rgb(115, 120, 131)", fontSize: "11px" }}
-                    >
-                      1x2
-                    </span>
-                  </div>
-                  <div
-                    className="flex flex-column justify-between"
-                    style={{ fontSize: "14px" }}
-                  >
-                    <div className="grow btnDiv">
-                      <span
-                        style={{ color: "rgb(115, 120, 131)", float: "left" }}
-                      >
-                        {item[0].data.teams.home.name}
-                      </span>
-                      {/* <span style={{color: "white", float: "right"}}>44</span> */}
-                    </div>
-                    <div className="grow btnDiv">
-                      <span
-                        style={{ color: "rgb(115, 120, 131)", float: "left" }}
-                      >
-                        {item[0].data.teams.away.name}
-                      </span>
-                      {/* <span style={{color: "white", float: "right"}}>46</span> */}
-                    </div>
-                  </div>
-                  <div style={{ color: "white", fontSize: "13px" }}>
-                    Betting amount:
-                    {getcoinbalance(item[1].amount)
-                      ? getcoinbalance(item[1].amount)
-                      : 150}
-                  </div>
-                </motion.li>
+                      <div className="text-xs">
+                        {item[0].data.league.country}.{item[0].data.league.name}
+                      </div>
+                      <div className="flex flex-column justify-between my-4">
+                        <div className="flex flex-row gap-2 items-center justify-center">
+                          <img
+                            src={item[0].data.teams.home.logo}
+                            className="h-10 w-10"
+                          />
+                          <div>{item[0].data.teams.home.name}</div>
+
+                        </div>
+                      </div>
+                      <div className="flex flex-column mt-[2px]">
+                        <div className="flex flex-row gap-2 items-center justify-center">
+                          <img
+                            src={item[0].data.teams.away.logo}
+                            className="h-10 w-10"
+                          />
+                          <div>{item[0].data.teams.away.name}</div>
+                          {timedifference(item[0].data) == "Second Half" ||
+                            (timedifference(item[0].data) ==
+                              "First Half" && (
+                              <div className="goalNum">
+                                {item[0].data.goals.away}
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                              Betting amount:{getcoinbalance(item[1].amount)}
+                        </div>
+                    </motion.button>
+                  </motion.li>
               )
               // <div className='matche_card' key={key} onClick={e=>redirect(key)}>
               //     <div className='mx-0 flex justify-between row leaguename'>

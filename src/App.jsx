@@ -188,6 +188,7 @@ function App() {
       return item.fixture.status.long;
     }
   };
+
   const create = async () => {
     setshowmodal(true);
     if (amount) {
